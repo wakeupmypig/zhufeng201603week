@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //预解释的机制
+    //1.无论条件是否成立（在chrome下）都预解释（只声明）
+    //虽然不管条件是否成立都预解释，但是只是声明（包括我们的函数）
+    //提前声明num = undefined
+    // sum();
+    //火狐下根本不预解释
+    //Uncaught TypeError: sum is not a function
+    //未捕获的类型错误 sum不是一个函数
+   /* console.log(sum());//sum已经声明好了，但是没有赋值
+    if("num" in window){
+        var num = 100;//给num进行赋值
+        function sum(){//undefined
+            console.log(1);
+        }
+    }*/
+  //100
+    //判断num这个变量在不在window内，看是不是window属性
+
+    //2.只对函数等号左边的预解释右边的不预解释
+    /*sum();
+    var a = function sum() {}*/
+//    Uncaught ReferenceError: sum is not defined
+    //未捕获的引用错误 sum 没有定义 sum不存在
+
+    //3.自执行函数 (function())(); 不预解释 在代码执行的时候既声明又定义
+
+    //4.return 后面的代码不执行，但是下面的预解释
+
+    function sum(){
+        //undefined
+        console.log(num);
+        return function () { //return后面跟着的是函数的返回值 所以不进行预解释
+            //和预解释没有任何关系
+            var num = 100;
+        }
+
+       //这个地方还是要进行预解释的，永远无法定义
+       // console.log(44,num);//return后面代码不执行
+    }
+    var b= sum();
+
+   /* function sum(){
+        return function (){
+
+        }//返回的就是一个空间，函数在执行的时候预解释
+    }*/
+    //sum();
+
+    //5.当var 和function的变量名字一样 不能重复声明了 但是重复赋值
+    var sum = 10;
+    function sum(){
+
+    }
+    sum(); //不能执行
+    //第一步进行预解释 var sum =undefined；sum = 函数体
+    //第二步真正的赋值 var sum = 10
+    //function sum 已经预解释了59-61不会重复声明 已经定义过了
+
+
+
+    //1.不管条件是否成立，都进行预解释
+    //2.等号左边预解释等号右边不预解释
+    //3.自执行函数不预解释
+    //4.return 紧跟着的代码是返回值（不预解释）
+    //5.var和function 重复定义 不重复声明，但是重新定义
+
+
+
+
+
+
+
+
+    
+
+</script>
+</body>
+</html>

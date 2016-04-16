@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //预解释 （变量提声）
+    //全局变量和私有变量
+    //全局变量就是在全局作用域下声明的变量
+    //私有作用域下声明的变量带var 和function的，函数的形参也是私有变量
+    //看一个函数有没有形参和带var和function的，如果没有就不是私有的，往上级找，一级一级找，直到找到window为止
+
+    //函数的执行步骤：（会生成一个私有的作用域）；
+    //1）形参赋值
+    //2）在当前函数内进行预解释
+    //3）代码从上到下执行
+    //4）。。。。。
+    //函数执行时会生成一个私有作用域，外界无法访问和修改，这种保护机制就叫闭包；(function(){})(); 闭包的常用形式
+    console.log(num);
+    var num =0;
+    //console.log(total);//只能在当前作用域下
+    console.log(num);
+    console.log(sum(1,2)); //这里就是输出函数体
+    function sum(num1,num2){//函数里的形参
+        console.log(total);//这个值是undefined
+        var total  = num1+num2;
+        console.log(total);
+        //return 把函数执行完的结果返回
+    }
+   /* var sum = function () {
+        console.log(1);
+    }
+    function sum(){//已经提前声明好了并且赋值，但是由于上次的sum赋值，覆盖掉了
+        console.log(2);
+    }
+    sum()*/
+    
+
+
+  /*  var count = 0;
+    function a(){
+        return function () {
+            console.log(count);
+        }
+    }
+   a()();*/
+</script>
+</body>
+</html>

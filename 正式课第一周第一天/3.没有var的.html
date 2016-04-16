@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //带var 和不带var的区别
+    //带var的提前声明
+    //不带var的不预解释
+    //相同点 都在window下增加了属性
+    //window.num
+   /* console.log(num);//预解释num  num =undefined
+    var num =0;*/
+    /*console.log(num);
+    num = 0; //报错*/
+
+    //var total = 100;
+    function sum(num1,num2){
+        //console.log(total);//带var话 预解释当前作用域有 这时候就是undefined
+        //像上级查找，一级一级直到window
+       // total = num1+num2;//不带var 相当于给window增加了一个total属性（前提是window下没有这个属性）
+        total = num1+num2;//浏览器发现找到window还是没发现 就是在window下添加属性；
+        console.log(total); //3
+    }
+    sum(1,2);
+    console.log(total);//虽然没有return 也拿到了值
+    //相当于在window下出现一个total变量/属性
+    //js代码执行在后台 全局是global  在浏览器中就是window
+
+    //如果自己家有，那么就是自己家的，没有就像上一级查找，如果没找到就报错；
+    //代码从上到下执行，报错后不再继续执行
+
+
+
+
+
+</script>
+</body>
+</html>

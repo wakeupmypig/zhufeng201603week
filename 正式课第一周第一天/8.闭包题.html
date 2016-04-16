@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //i++ 先运算在++   ++i先累加 后运算
+    //var num = 0;
+   /* console.log(num++); //num++ 1
+    console.log(num+(++num)); //1+2 = 3*/
+    function fo(){
+        var i = 0;
+        return function (n) {
+            return n+i++;
+        }
+    }
+    var f = fo();
+    var a = f(15);//15
+    var b = fo()(15);//15
+    var c = fo()(20);//20 //都被销毁重新创建
+    var d = f(20);//21
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
+</script>
+</body>
+</html>

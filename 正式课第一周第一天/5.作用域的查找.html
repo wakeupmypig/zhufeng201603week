@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">123</div>
+<script>
+    //作用域的查找
+    //作用的查找和在哪执行没有任何关系，和函数在哪个作用域下有关
+    //
+    //如果当前作用域没有就像上一级查找，如果上一级还没最终找到window
+   /* var num = 50;
+    function sum(){
+        var num = 100;
+        return function () {//相当于sum函数执行后 返回的函数
+            console.log(num);
+        }//000fff111
+    }
+    var b = sum();
+    ~function () {
+        var num =1000;
+        b();//000fff111执行会找他在哪里定义的 在sum里定义的
+    }();*/
+
+
+
+
+    console.log(arr);
+    var arr = [1,2,3];
+    function a(b){//b是形参
+        b[0] = 100;
+        console.log(b);
+        b = [0];
+        b[0] = 120;
+        console.log(b);
+    }
+    a(arr);
+    console.log(arr); //[100,2,3]
+    //基本数据类型 和引用数据类型的区别
+
+
+
+    //undefined [100,2,3] [120] [120]
+    //1.先进行预解释 var arr;a
+    //2.输出arr的值因为没有赋值肯定undefined
+    //3.开辟了一个空间[1,2,3];赋给了arr
+    //4.在arr执行的时候 -》传进去一个arr;代表的是把空间传进去
+    //b是形参代表的就是空间
+    //5.空间的第0项改成100 arr指向的空间 [100,2,3]
+    //6.给b赋值了一个新的房子 [0]
+    //7.把b的值改成[120]
+
+    //
+
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    //内存释放
+    //引用数据类型 声明的变量指向我们的堆内存
+    //如果不想引用地址就让他变成null，在浏览器空闲的时候被清掉xxxfff111 垃圾回收机制
+
+    //函数运行先生成一个私用作用域
+    //1）函数形参赋值
+    //2）预解释
+    //3）代码从上到下执行
+    //4)当函数执行后默认的一般会销毁执行完的作用域（浏览器会默认的去查找，没有引用就销毁这个私有作用域）
+
+    //1.当被引用就无法销毁
+    //在一个函数执行的时候返回一个引用数据类型，并且return的值是个引用数据类型（对象和函数）并且被外部变量接受，那么当前这个作用域不销毁
+    function fn(){
+        var num = 1;
+        return function () {
+            console.log(num);
+        }
+    }
+    var a = fn(); //function () {console.log(num);}//这个作用域就不销毁
+    a();//a执行后作用域销毁
+
+    //2.匿名函数里的onclick被外界的oDiv所引用 当前匿名函数不销毁
+    var oDiv  = document.getElementById("div1");
+    //typeof 判断div是什么类型 object
+    ~function () { //匿名函数不销毁。给元素添加事件的时候不销毁
+        var num = 100;
+        oDiv.onclick = function () {
+            console.log(100);
+        }
+    }();
+
+    //3.不立即销毁
+
+    function a(){
+        var num = 100;
+        return function () {
+            console.log(num);
+        }
+    }
+    a()//如果直接执行函数执行完后销毁 ，外面有没有变量接受
+    a()();//在return 后面的函数执行的时候不能让a销毁（不立即销毁）
+    //最后两个函数都销毁
+
+
+    //1.不销毁，返回一个引用数据类型被外界变量接受，return 的作用域不销毁
+    //2.给元素添加事件，会让div引用当前的函数 那么函数的上一级作用域不销毁
+    //3.不立即销毁函数返回函数  两个函数都执行，外面的函数不立即销毁
+
+
+
+
+
+   /* var obj = {"name","jw"}//堆内存xxxfff111
+
+    function sum(num1,num2){
+        var total = num1 +num2;
+        console.log(total);
+    }
+    sum(1,2)*/
+
+</script>
+</body>
+</html>

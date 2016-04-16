@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 在页面中最大是document
+    //1.代码是在window下执行 （全局作用域），js代码的执行环境
+    //代码是从上到下执行，（代码在从上到下执行之前进行预解释）
+
+    //2.什么是预解释
+    //在我们代码执行之前，在全局作用域下预解释 ，找所有带var 和function进行声明和定义，如果函数内的只有在函数执行的时候才预解释
+    //声明：declare 告诉当前作用域下有这么一个变量 var num
+    //定义：defined 给一个变量进行赋值，把数据和变量联系在一起
+
+
+    //3.预解释var和function的区别
+    //带var 关键字的提前声明，但是不定义(值是undefined)
+    //带function关键字的 既声明又定义
+    //var num;//在全局作用域下有一个num变量
+
+    console.log(num);
+    var num =0;
+    //console.log(total);//只能在当前作用域下
+    console.log(num);
+    console.log(sum(1,2)); //这里就是输出函数体
+    function sum(num1,num2){//函数里的形参
+        var total  = num1+num2;
+        console.log(total);
+        //return 把函数执行完的结果返回
+    }
+    //函数是开辟一个空间将代码以字符串的形式存进去
+    //对象是开辟一个空间，将属性名和属性值存进去
+
+
+    //4.js中的内存的分类
+    //栈内存：提供代码执行环境的叫栈内存（全局作用域和私有作用域）；
+    //堆内存：存储属性名和属性值 还有函数的函数体 引用空间；
+
+    var obj ={name:"jw",age:20}
+</script>
+</body>
+</html>

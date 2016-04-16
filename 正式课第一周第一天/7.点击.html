@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<script>
+    var oBtn = document.getElementsByTagName("button");
+    for(var i = 0; i<oBtn.length;i++){
+        //匿名函数不预解释，当执行的时候既声明又赋值
+        (function (i) {//这个作用域都不销毁
+            //i = 0;
+            //形参是私有的
+            //i就被保存在当前作用域下
+            oBtn[i].onclick = function () {
+                alert(i);//当点击后i，当前没有i像上一级查找，
+            }
+        })(i);
+        //当这个匿名函数执行的时候将for循环的i传到这个函数里（形参是私有的）i就在这个匿名函数里定义了
+        //在不销毁的作用于里保存了各自的i
+
+        //异步 不同步for已经循环完了当函数执行的时候i已经变成最后一个了 ；我们的匿名函数可以解决异步的问题
+        //两个人一起吃饭是异步 同步是你吃完了我才能吃
+    }
+
+    //定时器是异步的
+    //不是从上到下
+    //setTimeout方法就是异步的 就算是0 浏览器也会默认的有延迟
+   /* setTimeout(function () {
+        console.log(10000);
+    },0);
+    //异步的先让同步的执行完在执行
+    for(var i =0;i<1000;i++){
+        console.log(100);
+    }*/
+    var num = 1000;
+    //让num值为0
+    /*(function (num) {
+        //var num =0
+        setTimeout(function () {
+            console.log(num);
+        },0);//肯定是在同步之后执行
+    })(num);*/
+
+    setTimeout((function (num) {
+        return function () {
+            console.log(num);
+        }
+    })(num),0);//把异步代码用匿名函数包起来，解决异步问题
+    //改写选项卡
+    for(var i =0;i<1000;i++){
+        num++;
+    }
+    console.log(num);
+
+    
+    
+
+
+
+
+
+</script>
+</body>
+</html>
