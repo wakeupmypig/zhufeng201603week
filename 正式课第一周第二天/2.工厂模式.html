@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //工厂模式
+    //批量生产 以前是一个个创建（代码冗余）；
+    //低耦合 高内聚
+    /*function createCoder(){
+     //声明一个对象有几种方式
+     //字面量 实例创建；
+     var obj = new Object();
+     obj.name = "孙勇建";
+     obj.age = 40;
+     obj.writeCss = function () {
+     console.log("写css");
+     };
+     obj.writeJs = function () {
+     console.log("写js");
+     //            return 1
+     }
+     return obj;
+     }*/
+    function createCoder() {
+        //声明一个对象有几种方式
+        //字面量 实例创建；
+        //相当于给单例包装了个盒子
+        var obj = {
+            name :"孙勇建",
+            age : 40,
+            writeCss : function () {
+                console.log("写css");
+            },
+            writeJs :function () {
+                console.log("写js");
+                //            return 1
+            }
+        }
+        return obj;
+    }
+    var arr = [];
+    for (var i = 0; i < 30; i++) {
+        arr.push(createCoder()); //快速的创建（批量生产）；
+    }
+    //
+    console.log(arr);
+
+    //var obj = createCoder(); //执行完以后是一个对象
+    //createCoder().writeJs();
+
+    //函数的作用是封装
+    //面向对象的特性 封装 继承 多态
+    //多态里包括 重载和重写
+    //什么是重载 同名 同类 不同参
+    //这两个sum相当于在同一个作用域下
+    //重载是根据类型 和参数个数
+    //再别的语言里面有重载，js中没有，因为后面的会覆盖掉前面的
+    //js中模拟重载 手动写的
+    function sum(){
+        //传递一个参数的时候
+        if(arguments.length==1){
+        //传递两个参数的时候
+        }else if(arguments.length==2){
+            //判断每一个参数的类型 把每一个参数取出来
+            for(var i = 0; i<arguments.length;i++){
+                //如果是函数类型 我们就让他执行
+                if(typeof arguments[i]=="function"){
+                    arguments[i]();
+                }else{
+                    //不是得话直接当前传进来的值
+                    console.log(arguments[i]);
+                }
+            }
+        }
+    }
+    sum(function(){console.log(1);},2);
+
+
+
+
+   /* function sum(String num1){
+        console.log(1);
+    }
+    function sum(int num1){
+        console.log(2);
+    }
+    sum()*/
+
+</script>
+</body>
+</html>
