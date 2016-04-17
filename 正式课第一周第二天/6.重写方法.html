@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //sort_unique
+    /**
+     * 相当于在原型上增加了一个公有方法 sort_unique
+     */
+    /*var obj = {
+        1:22,
+        name:"jw",
+        age:0,
+        0:11
+    };*/
+    //按照顺序进行输出，在把其余的输出
+    /*for(var key in obj){
+        console.log(obj[key]);
+    }*/
+
+    /*Array.prototype.sort_unique= function () {
+        //当前调用者 是我们this
+        var obj = {};
+        var cur = [];//我们去重好和排序好的数组
+        for(var i =0; i<this.length;i++){
+            //this[i] 是我们取出的每一项
+            //对象相同属性不会重复 obj[100] 再有一个obj[100]
+            obj[this[i]] = this[i];//如果重复 我们就覆盖掉
+        }
+        for(var key in obj){
+            cur.push(obj[key]);
+        }
+        return cur;
+
+    };*/
+    /*Array.prototype.sort_unique= function () {
+        var obj = {};
+        var arr = [];
+        for(var i = 0; i<this.length;i++){
+            obj[this[i]]= this[i];
+        }
+        for(var key in obj){ //不能用key key是字符串型的
+            arr.push(obj[key]);
+        }
+        return arr;
+    };*/
+
+
+    //链式调用  当调用了一次要返回这个类的实例
+
+    var arr = [1,2,3];
+    console.log(arr.slice(1).push(5));//push的返回值length
+    //如果arr.slice()返回的不是数组 那能push么？肯定返回Array的实例
+
+    //(5).plus(9).minus(3) =>11
+    Number.prototype.plus= function (num) {
+        //（5）是当前的调用者 num是形参
+        return this+num;//返回一个数值类型就可以链式调用
+    }
+    Number.prototype.minus= function (num) {
+        //(5).plus(9)整体是我们的this;
+        return this-num;
+    }
+    console.log((5).plus(9).minus(3));//链式调用
+
+   /* [1,2,3].forEach(function (item,index) {//item是当前的值 index是索引
+        console.log(item,index);
+    })*/
+
+    //forEach
+    /*Array.prototype.forEach = function (fn) {
+        //fn是传递的函数 fn = function (item,index) {console.log(item,index);}
+        //分析 当前this [1,2,3];
+        for(var i = 0; i<this.length;i++){
+            fn(this[i],i);
+        }
+    };*/
+    /*[1,2,3].forEach(function (a,b) {//a代表项 b 所以
+        console.log("项"+a,"索引"+b);
+        //目的是输出
+    });*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* console.log(Array.prototype);
+    console.log([100,200,1,2,3,6,7,8,9,1,2,3,8,100].sort_unique());
+*/
+
+
+
+</script>
+
+
+
+</body>
+</html>

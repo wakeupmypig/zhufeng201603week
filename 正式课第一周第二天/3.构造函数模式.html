@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //构造函数
+    // 什么对象 什么是类 什么是实例
+    //万物皆对象 类对象中的细分 类中具体的一个东西
+    //Object Array RegExp Date String Boolean ...
+    //{}     []    /^$/
+    //js没有类(函数) es6里面有类
+    //工厂模式 就是一个函数 -> 通过类创造出的都是对象
+    /*function createCoder(name,age){
+        var obj = new Object();
+        obj.name=name;
+        obj.age = age;
+        obj.writeCss = function () {
+            console.log("写css");
+        }
+        obj.writeJs = function () {
+            console.log("写js");
+        }
+        return obj;
+    }
+    var obj = createCoder("jw",18);
+    console.log(obj);
+
+    //构造函数 类名必须大写
+    function CreateCoder(name,age){
+        var sex = '1'; //在函数内部定义的是私有的变量,这个sex变量不是当前实例的
+        console.log(1);//执行就输出
+        //var obj = new Object();//不用再声明一个对象
+        this.name=name; //是对象上的私有属性
+        this.age = age;
+        this.writeCss = function () {
+            console.log("写css");
+        }
+        this.writeJs = function () {
+            console.log("写js");
+        }
+        //return obj;//也不用返回
+    }*/
+    //1.构造函数执行和函数的执行的区别，用new
+    //正常函数直接createCorder()
+
+    //this指向的就是当前的实例
+    //以person1为对象 添加了属性
+
+
+    //细节
+    //1.当构造函数运行的时候 函数里面的this就是我们当前的实例
+    //2.我们的类也是函数
+    //1）类也具备函数特点 的执行顺序->形参赋值（私有的）->预解释-》代码从上到下执行
+    //2）函数里声明的是私有变量和this（当前实例）没有任何关系
+    //3.instanceof  用法 （实例 instanceof 类） 返回值是true或者false
+    //4.return 如果return 返回的是基本数据类型  new 出来的还是当前实例，如果是引用数据类型 返回的就是就是引用的地址
+    //4.return 如果return 返回的是基本数据类型  new 出来的还是当前实例，如果是引用数据类型 返回的就是就是引用的地址
+    //+面向对象 面向过程 区别
+    //5判断是否是私有属性 in 既判断公有属性，又判断私有属性
+    //hasOwnProperty; 是否是私有属性
+
+    //找到公有的属性 hasPublicProperty
+
+
+
+
+
+
+
+    function CreateCoder(name,age){
+        this.name=name;
+        this.age = age;
+        this.writeCss = function () {
+            console.log("写css");
+        }
+        this.writeJs = function () {
+            console.log("写js");
+        }
+        //return 123; //如果返回123 还是当前的事例
+        /*return function () {
+            
+        }*/
+    }
+    CreateCoder.prototype.goHome = "123";
+    var person1 = new CreateCoder("jw","18");//函数被运行
+    //console.log(person1);
+    console.log( "writeJs" in person1); //当前属性存在this中
+    console.log(person1.hasOwnProperty("writeJs"));
+    /*
+     * @param:attr 对象中的属性
+     * @param:obj 当前对象
+     * return true/false 判断是否是共有属性
+     * */
+    function hasPublicProperty(attr,obj){
+        //判断前obj是否有这个属性    判断是不是私有的
+        return (attr in obj)&&(!obj.hasOwnProperty(attr));
+    }
+    console.log(hasPublicProperty("goHome",person1));
+
+//当前person1是否存在私有属性writeJs
+
+
+    var arr = [];
+    //console.log(typeof []);//object
+    //console.log(typeof person1); //对象类型
+    //typeof缺点 不能识别 具体的对象数据类型里包括的
+
+    //判断 person1是否是createCoder的实例
+    /*console.log(person1 instanceof CreateCoder);//true
+    console.log(person1 instanceof Array); //false
+    console.log(person1 instanceof Object); //true 对象由Object类创建的*/
+
+
+
+
+   // "num" in window;
+
+
+    var person1 = new CreateCoder("jw",18);//person1上私有的writejs
+    var person2 = new CreateCoder("jw",18);//person2的私有writeJs
+    console.log(person1.writeJs==person2.writeJs);
+
+    //构造函数 无法将 公共的提取出来 （每个人都是独立的个体）
+    //this指代的是当前的person1和person2里面的属性都是私有的不相等
+
+
+
+
+
+
+
+
+
+
+
+    var name = "ss";
+    function a (){
+        this.name = "jw";
+        this.getName = function () {
+            //this就是我们的实例
+        //    console.log(this.name);
+        }
+    }
+    (new a()).getName()//a()执行后会返回一个实例可以调用getName方法； this 的指向是谁调用 就是谁 new a() = >实例
+
+
+
+</script>
+</body>
+</html>

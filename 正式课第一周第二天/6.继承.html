@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //什么是继承 儿子继承父亲的
+    function Parent(name,age){
+        this._name = name;
+        this._age = age;
+        this._smile = "笑";
+    }
+    Parent.prototype.eat = function () {
+        console.log("eat");
+    };
+    Parent.prototype.drink = function () {
+        console.log("drink");
+    };
+    function Child(name,age){
+        this._name = name;
+        this._age = age;
+    }
+    Child.prototype.play = function () {
+        console.log("玩");
+    }
+    var p = new Parent("爸爸",40);
+    var child2 = new Child("儿子2",18);//这时候 已经拥有了方法
+    var child = new Child("儿子",18);
+    //child.play();
+    //儿子和爸爸就乱了；
+    Child.prototype = new Parent();//继承 在改变类的指向
+    Child.prototype.play = function () {
+        console.log("wanwan");
+    }
+    var child3 = new Child();
+
+    child3.play();
+
+
+    //让子类的原型 指向父类的实例 父类的实例会影响父类么？
+    //把父类的实例当作子类的原型
+	//在往原型上添加东西
+	//把子类的公共方法，放到父类的实例
+	//会造成 子类会拥有父类的私有属性
+
+	//扩展 __proto__不兼容 （画图理解）
+	//Child.prototpe.__proto__ = Parent.prototype
+	//子类不会继承父类的属性
+
+
+
+	
+
+    // 就没有任何意义了，但是以后new出来的原型就改变了
+    //
+    //
+    //Child.prototype.__proto__.eat();
+    //child2.play();
+
+    // Child.prototype = Parent.prototype; //儿子和爸爸用的是同一个空间
+
+
+	//画原型链  slice  forEach  继承画图
+
+
+
+</script>
+</body>
+</html>

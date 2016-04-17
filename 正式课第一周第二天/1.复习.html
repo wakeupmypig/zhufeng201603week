@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //预解释
+    //先把带var和function的预解释
+    //带var只声明，不定义
+    //function 声明+定义
+
+    //window全局作用域
+
+    //函数执行的时候会形成作用域
+    //函数执行的步骤：
+    //1）形参赋值
+    //2）预解释
+    //3）代码从上到下执行
+
+    //带var 和不带var的区别
+    //带var的预解释不带var的不预解释
+    //不带var的往上找，直到找到window，window下如果没有 报错了
+
+    //预解释的机制
+    //1）不管条件是否成立都预解释
+    //2）var num = function(){} 只对等号左边预解释，右边不预解释
+    //3）自执行函数不预解释 当执行到这一行的时候声明和定义
+    //4）return 后面的是返回值 return下是解释但是不执行
+    //5) 如果重名，不重复声明 ，但是重复定义
+
+
+    //1.销毁
+    //2.和不立即销毁
+    //3.不销毁  ()()
+
+    //闭包
+    //保护私有变量不受外界影响，外面无法修改
+    //解决异步编程问题 setTimeout  可以用setTimeout实现一个从中间放大的层
+
+
+    //this
+    //在哪定义和执行关系
+    //谁调用 当前this就是谁
+    //自执行函数 this是window
+    //元素.onclick = function(){ //当前this就是元素}
+    //构造函数里的this 是new出来的实例
+    //call，apply ，bind改变this指向
+
+
+    for(var i =0;i<10;i++){ //全局下，没有生成作用域
+        var num  = 100;
+    }
+    alert(i);//
+
+</script>
+</body>
+</html>

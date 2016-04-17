@@ -24,6 +24,8 @@
      }
      return obj;
      }*/
+    //工厂模式 无法进行实例识别 var obj都是Object的实例
+
     function createCoder() {
         //声明一个对象有几种方式
         //字面量 实例创建；
@@ -68,7 +70,7 @@
             for(var i = 0; i<arguments.length;i++){
                 //如果是函数类型 我们就让他执行
                 if(typeof arguments[i]=="function"){
-                    arguments[i]();
+                    arguments[i]();//让函数执行
                 }else{
                     //不是得话直接当前传进来的值
                     console.log(arguments[i]);
@@ -76,7 +78,8 @@
             }
         }
     }
-    sum(function(){console.log(1);},2);
+    var fn = function(){console.log(1);};
+    sum(fn,2);
 
 
 

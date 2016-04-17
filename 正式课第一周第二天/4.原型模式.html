@@ -9,6 +9,11 @@
     /*
     * 原型模式 是在构造函数的基础上 为了区分公用和私有
     * */
+
+    //原型 （类是构造函数）
+    //1）每个函数自带prototype属性，并且这个prototype这个数行是对象型（我们prototype里装的就是我们公有的属性）指向原型
+    //2）我们的prototype属性，上面一个constructor属性，指向的是我们函数本身
+    //3）每个对象属性都有一个__proto__的属性,指向的是类的原型
     function CreateCoder(name,age){
         this.name=name;
         this.age = age;
@@ -18,7 +23,83 @@
         this.writeJs = function () {
             console.log("写js");
         }
+        this.eat = function () {
+            console.log("大吃特吃");
+        }
     }
+    CreateCoder.prototype.eat = function(){
+        console.log("eat");
+    }
+    CreateCoder.prototype.drink = function(){
+        console.log("drink");
+    }
+
+    var person1 = new CreateCoder("jw","18");
+    //__proto__不兼容，在我们的nodejs都用这个实现
+    person1.__proto__.eat();//通过__proto__找到公用的属性
+    person1.eat();//私有上没有，所以用公有的
+    //先找私有的，如果私有上没有通过__proto__找；
+    //通过原型查找找到constructor指向自己
+    console.log(CreateCoder.prototype.constructor==CreateCoder);
+    console.log(person1.__proto__.constructor);//通过原型链查找到constructor属性指向的就是类本身
+    console.log(person1.constructor); //自己没有就会像上一级查找
+
+    //所有的对象都是Object的实例 （Object叫我们的基类）
+    console.log(CreateCoder.prototype.__proto__==Object.prototype);
+
+    console.log(Array.prototype);
+    console.log(Object.prototype);
+    //Object上有 hasOwnProperty isPrototypeOf  propertyIsEnumerable
+    //valueOf toString  作业：了解用法 ；
+    console.log(Object.prototype.__proto__ ==null);
+
+    console.log(Object.__proto__.constructor);
+    console.log(Object.__proto__.__proto__);
+    //原型链 查找的过程
+
+    //原型就是存储公用的方法
+
+    function B(){
+        this.eat = function () {
+            console.log("吃");
+        }
+        this.drink = function () {
+            console.log("喝");
+        }
+    }
+    B.prototype.goHome = ["1","2","3"]; //共有的
+    B.prototype.play = function () {
+        console.log("玩");
+    }
+   /* B.prototype.smile = function () {
+        console.log("大笑");
+    }*/
+    var b = new B;//如果不传递参数可以省略括号
+    b.smile  = function(){
+        console.log("笑");
+    }//定义在私有属性上了
+    //b.smile();//报错 先找私有的再找公有的
+    b.goHome[0] = 100;
+    console.log(b.goHome); //这个是操作空间
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //画图
+    function B(){
+
+    }
+    //div.style.background
+    var pro = B.prototype;
+    //这是一个简写的
+    /*pro.drink  = function () {
+        
+    }
+    pro.eat = function () {
+        
+    }*/
+
+    B.prototype = {//因为指向了一个新的空间，所以没有constructor
+        constructor:B,//我们手动添加
+        drink: function () {
+            console.log(1);
+        },
+        eat: function () {
+            console.log(2);
+        }
+    };
+    (new B).eat();
+    console.log(new B);
+    //单独的把原生的覆盖掉了
+    Array.prototype.push = function () {
+        //this 当前的this是实例
+       // console.log(this);
+      console.log("不能增加了");
+    };
+
+    //类上的方法都在实例上 通过__proto__找到prototype
+    [1,2,3].push(1);
+    //防止你修改原型链，一个个改可以，但是不能一起修改
+   /* Array.prototype = {
+        push: function () {
+            console.log("不能增加");
+        },
+        slice: function () {
+            console.log("不能截取");
+        }
+    }*/
+   // [1,2,3].push(0);
+
+
+    
+
+
+
+</script>
+</body>
+</html>
