@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 原型模式 是在构造函数的基础上 为了区分公用和私有
+    * */
+    function CreateCoder(name,age){
+        this.name=name;
+        this.age = age;
+        this.writeCss = function () {
+            console.log("写css");
+        }
+        this.writeJs = function () {
+            console.log("写js");
+        }
+    }
+</script>
+</body>
+</html>
