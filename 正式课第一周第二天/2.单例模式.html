@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //单例模式（就是一个对象）只有唯一的一个实例，对外部提供接口
+    //解决同一个作用域下 属性相同 值不同的问题
+    //分类的作用
+    //全局的变量
+    //尽量不要用全局变量，会污染全局作用域
+
+    var MrsJian = {
+        name:"孙勇健",
+        age:30,
+        smile:"ws"
+    }
+
+    //同上
+    /*var person = (function () {
+        var _name = "孙勇建";//不会污染全局变量
+        var _age = 18;
+        return {
+            name:_name,
+            age:_age
+        };
+    })();*/
+    ;(function () {
+        var _name = "孙勇建";//不会污染全局变量 这是私有的 函数执行时会形成私有作用域
+        var _age = 18;
+        window.obj=   {
+            name:_name,
+            age:_age//作用域查找
+        };
+    })();
+    console.log(obj.name);
+    //console.log(_name);
+    var MrsYang = {
+        name:"李会洋",
+        age:18,
+        color:"black"
+    };
+
+
+
+    //这几种方式会非常常用
+    //分类的作用，而且独立， 模块化；
+    //分成一块块的
+    //这是一个人写的
+    var util ={
+        addClass: function () {
+            console.log(1);
+        }
+    }
+    //你只写一个切换面板
+    //思考
+    var tab = {
+        init: function () {
+            util.addClass();
+        },
+        bindEvents: function () {
+            //当前的this是tab
+            this.init();
+            var that = this;
+            function a(){
+                //this ->window
+                //console.log(this);
+                console.log(that);
+                that.init();
+            }
+            a();
+        }
+    };
+    tab.bindEvents();
+    // namespace命名空间//相当于给空间命名；
+    //缺点 ：还是不能完全解决命名冲突问题
+             //调用的时候名字过长
+    //前端有seajs  requirejs 解决模块化的问题
+
+
+    //单例是什么 就是一个对象里面存的是属性名和属性值
+    //手工方式 每次创建都需要在重写一遍，代码冗余，
+
+
+
+
+
+
+
+
+   /* var name = "孙勇健";
+    var age = 30;
+    var smile  = "ws";
+*/
+    /*var name = "李会洋";
+    var age = 18;
+    var color = "black";*/
+    console.log(name);//我们赋值的时候被重新赋值
+
+
+
+</script>
+</body>
+</html>
