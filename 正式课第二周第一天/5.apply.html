@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //call和apply是一样的目的都是改变this指向
+    var obj = {name:"jw"};
+    function fn1(a,b){
+        console.log(this,a,b);
+    }
+    fn1.call(obj,1,2);//让fn1中的this指向obj 让fn1执行
+    fn1.apply(obj,[1,2]);//以数组的方式传递参数
+    //第一个参数都可以改变this指向
+    //第二个参数是以数组的形式，传递参数
+
+    //什么是bind 怎么写bind bind（不兼容6-8）；
+    //bind也是改变this指向
+    var obj = {name:"jw"};
+
+    function fn2(a,b){
+        console.log(a,b);
+        console.log(this);
+    }
+    //bind不是立马执行，先预置this
+    var bound = fn2.bind(obj);//用bind不是直接改变而是返回了一个新的函数（新的函数是把this指向改变好的）
+   // fn2();//正是正常在window下执行
+    bound(1,2);//我们绑定好的函数在进行传递参数
+    Function.prototype.mybind= function (a) {
+        //this就是我们要执行的函数
+        var that = this;
+        return function () {
+            that.call(a);
+        }
+    };
+    var obj = {name:"jw"};
+    function fn2(){
+        console.log(this);
+    }
+    var bind2 = fn2.mybind(obj);
+    bind2();
+    //相当于先绑定，执行的时候完全把this改变
+
+
+    /*//当前的this ->fn2;
+    //a是要绑定的参数（this）；
+    var that = this; //暂存fn2
+    return function (){ //第一步返回函数
+        return that.call(a); //让fn2执行
+     //mybind方法会返回一个函数
+    }*/
+</script>
+</body>
+</html>
