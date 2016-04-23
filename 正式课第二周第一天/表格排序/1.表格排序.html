@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="./index.css">
+<body>
+    <table id="oTab" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>颜值</th>
+                <th>性别</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+<script src="utils.js"></script>
+<script>
+    //先获取数据
+    var oTab = document.getElementById("oTab");
+    var oHead = oTab.tHead;//拿到表头
+    var oThs =oHead.rows[0].cells;//拿到thead里的唯一的一行,里的所有列
+    //tbody里面可以有多个
+    var oBody = oTab.tBodies[0];
+    var orows = oBody.rows;
+    //数据绑定ajax
+    //ajax四部曲
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','./data.txt',false);//第一个参数是请求类型，第二个参数数据的地址，是否异步
+    //请求的的状态变化
+    var val;
+    xhr.onreadystatechange = function () {
+        //两个状态都满足 就代表请求成功
+        if(xhr.readyState==4&&/^2\d{2}$/.test(xhr.status)){
+            val = utils.jsonParse(xhr.responseText);//string类型的
+        }
+    }
+    //发送
+    xhr.send(null);
+    //绑定数据
+    function bindData(){
+        //为了减少回流创建文档碎片
+        var df = document.createDocumentFragment();
+        for(var i = 0; i<val.length;i++){
+            var cur = val[i];//代表着取出来的每一个对象
+            var oTr = document.createElement('tr');//根据val的数量创建tr
+            for(var key in cur){
+                var oTd = document.createElement('td');
+                oTd.innerHTML = cur[key];
+                oTr.appendChild(oTd);
+            }
+            df.appendChild(oTr);//将每次的tr放到垃圾箱内
+        }
+        oBody.appendChild(df);
+    }
+    bindData();
+    function changeColor(){
+        for(var i =0; i<orows.length;i++){
+            orows[i].className='';//让所有的tr都没有样式
+            //判断单数行 奇数行
+            i%2?orows[i].className='changeColor':void 0;//奇偶行增加
+        }
+    }
+    changeColor();
+    function sortTable(){
+        //如果点的不是自己就让其flag = -1；
+        //this.index//是具体的某一个
+        //让类数组转换成数组，进行排序
+        var arr = utils.nodeListToArray(orows);
+        var that = this;
+        that.flag*=-1;//不停的正负切换，切换sort的排序顺序
+        for(var i =0; i<oThs.length;i++){
+            if(oThs[i]!=this){//如果不等于自己的话
+                oThs[i].flag = -1;//就让顺序重新开始计算
+            }
+        }
+        arr.sort(function (a,b) {
+            //将每一行的列的值取出来
+            //是数就排序，不是就localcompare
+            if(isNaN(a.cells[that.index].innerHTML)||isNaN(b.cells[that.index].innerHTML)){
+                return a.cells[that.index].innerHTML.localeCompare(b.cells[that.index].innerHTML)*that.flag;
+            }
+            return (parseFloat(a.cells[that.index].innerHTML)- parseFloat(b.cells[that.index].innerHTML))*that.flag;
+        });
+        //根据排好序的把每一个tr取出来
+        var dg = document.createDocumentFragment();
+        for(var i =0; i<arr.length;i++){
+            var cur = arr[i];
+            dg.appendChild(cur);
+        }
+        oBody.appendChild(dg);
+        changeColor()
+    }
+    for(var i = 0;i<oThs.length;i++){
+        oThs[i].flag = -1;
+        oThs[i].index=i;//将自己的都记住
+        oThs[i].onclick = function () {
+            sortTable.call(this);//执行的时候要告诉我们点的是那一列
+        }
+    }
+
+
+
+
+</script>
+</html>

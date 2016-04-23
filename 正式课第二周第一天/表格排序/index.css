@@ -1,0 +1,22 @@
+*{
+    margin: 0;padding: 0;
+}
+table{
+
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid greenyellow;
+    -webkit-box-reflect: below 1px -webkit-gradient(linear, 0% 100%,100% 100%, from(rgba(255,255,255,0)), to(white));
+
+
+}
+table th{
+    background:goldenrod;
+    cursor: pointer;
+    -webkit-user-select: none;
+
+}
+.changeColor{
+    background: gold;
+}
