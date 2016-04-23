@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //打分 去掉最高的和去掉最低的 之后在求平均数
+    /*function avg(){
+        console.log(arguments);
+        //arguments
+        var arr = [];
+        //arguments是类数组。不能直接用数组的方法
+        for(var i =0; i<arguments.length;i++){
+            arr.push(arguments[i]);
+        }
+        arr.sort(function (a,b) {
+            return a-b;
+        });
+        arr.shift();
+        arr.pop();
+                                                //toFixed方法是保留几位小数
+        return (eval(arr.join('+'))/arr.length).toFixed(2);
+    }
+    var avgNum =  avg(10,2,4,5,7,98,99.1,1,2,4,80.5);
+    console.log(avgNum);
+
+   Array.prototype.slice = function () {
+        //[1,2,3,4]当前调用者
+        var arr = [];
+        for(var i = 0; i<this.length;i++){
+            arr.push(this[i]);
+        }
+        return arr;
+    }*/
+
+   //[1,2,3].slice();
+
+   /* function avg(){
+        var arr  = Array.prototype.slice.call(arguments,0);
+        //少写了个for循环 借用了数组的方法
+        arr.sort(function (a,b) {
+            return a-b;
+        });
+        arr.pop();
+        arr.shift();
+        //将argument 变为数组的中的this 执行slice方法
+        return (eval(arr.join('+'))/arr.length).toFixed(2);
+    }*/
+    var avgNum = avg(10,2,4,5,7,98,99.1,1,2,4,80.5);
+    console.log(avgNum);
+
+
+    //slice 截取返回后的“数组 ”
+    //sort 只是排序 你把arguments放进去，出来的还是arguments
+
+
+
+    function avg(){
+        //只是把arguments排序了，排序了以后还是类数组
+        //slice是把类数组转换成了数组
+        //让arguments变成Array里的this
+        [].sort.call(arguments, function (a,b) {
+            return a-b;
+        });//返回的是类数组
+        //又借用了数组的方法
+        [].shift.call(arguments);
+        [].pop.call(arguments);
+        return (eval([].join.call(arguments,'+'))/arguments.length).toFixed(2);
+    }
+    var avgNum = avg(10,2,4,5,7,98,99.1,1,2,4,80.5);
+    console.log(avgNum);
+
+    //***改变Array.prototype里的this,为我们想要的arguments
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

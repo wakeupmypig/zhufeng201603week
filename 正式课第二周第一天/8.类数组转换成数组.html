@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类数组转换成数组</title>
+</head>
+<body>
+<div name="a"></div>
+<div name="a"></div>
+<div name="a"></div>
+<div name="a"></div>
+<script>
+    var oDivs  = document.getElementsByTagName("div");
+    console.log(oDivs);//HTMLCollection
+    //类数组
+    console.dir(document.getElementsByName('a'));
+    //nodeList HTMLCollection arguments 都是类数组
+    //类数组，有索引，有length 所以我们要借用数组上的方法
+    var arr = [];
+    for(var i =0; i<oDivs.length;i++){
+        arr[arr.length]=oDivs[i];
+    }
+    console.log(arr); //我们以前直接用for循环把他变成数组
+    //数组里的slice
+
+    (function (){
+       var arr =  Array.prototype.slice.call(arguments);
+        //arguments借用数组里的方法不存在兼容性问题；
+        console.log(arr);
+    })(1,2,3,4);
+
+    //push 模拟concat
+
+  //  var newArr = Array.prototype.slice.call(oDivs,0);
+    //slice方法返回克隆好的数组 ie6-8下不兼容
+    //DOM元素借用数组里的方法不兼容
+    //console.log(newArr instanceof Array);
+
+</script>
+</body>
+</html>

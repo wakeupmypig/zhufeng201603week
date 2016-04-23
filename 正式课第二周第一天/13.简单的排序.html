@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul>
+    <li>李晓伟</li>
+    <!--l-->
+    <li>郭强</li>
+    <!--g-->
+    <li>董艳阳</li>
+    <!--d-->
+    <li>郑建翔</li>
+    <!--z-->
+</ul>
+<!--我们的代码依赖于util.js-->
+<script src="utils.js"></script>
+<script>
+    console.log("a".localeCompare("a"));//-1 a<b 1 a>b a=a 0
+    //先获取li
+    //获取的是类数组，要借用数组上的方法
+   /* var oLis = utils.nodeListToArray(document.getElementsByTagName("li"));
+    var newArr = oLis.sort(function (a, b) {
+        // console.log(a,b);
+        return parseFloat(a.innerHTML) - parseFloat(b.innerHTML);
+        //-法默认数学运算
+    })
+    console.log(newArr);//排好序的数组
+    //parent.appendChild (移动的功能)；
+    var df = document.createDocumentFragment();
+    for(var i =0; i<newArr.length;i++){
+        df.appendChild(newArr[i]);
+    }
+    document.querySelector("ul").appendChild(df);//减少回流
+*/
+    var oLis = utils.nodeListToArray(document.getElementsByTagName("li"));
+    var arr = oLis.sort(function (a,b) {
+        console.log(a.innerHTML.localeCompare(b.innerHTML));
+        //拼音排序 返回 0 1 -1三个值
+        return a.innerHTML.localeCompare(b.innerHTML);
+        //可以判断字符串的类型
+    })
+    var df = document.createDocumentFragment();
+
+    for(var i = 0; i<arr.length;i++){
+        df.appendChild(arr[i]);//把每一个li放到垃圾箱里
+    }
+    console.log(df);
+    document.querySelector("ul").appendChild(df);
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

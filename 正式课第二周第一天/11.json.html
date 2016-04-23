@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="utils.js"></script>
+<script>
+    //什么是json（通用的）用json来交互
+    //json是一种传输格式，
+    // 和对象比有什么区别？
+    //属性名必须增加双引号
+    //对象是json么 json是对象么
+    //对象不一定是json，但是json一定是对象
+
+    var arr = [{'name': "叶单", "age": 30}, {"name": "段晓青", "age": 30}, {"name": "郑莉", "age": 30}]
+    //json必须双引号
+    //window里
+    //JSON.parse(); 把有效的json字符串转换成json格式
+    //JSON.stringify(); 把json格式的转换成字符串
+    /*var parse = JSON.stringify(arr);
+    console.log(parse);
+    var obj = JSON.parse(parse);
+    for(var i =0; i<arr.length;i++){
+        var cur = arr[i];
+        for(var key in cur){
+            console.log(cur[key]);
+        }
+    };*/
+    //[{"name":"叶单","age":30},{"name":"段晓青","age":30},{"name":"郑莉","age":30}];
+   /* var ary = JSON.parse('[{"name":"叶单","age":30},{"name":"段晓青","age":30},{"name":"郑莉","age":30}]');
+    console.log(ary);*/
+    //ie6-7下不兼容JSON.parse();
+    /*var str = '[{"name":"叶单","age":30},{"name":"段晓青","age":30},{"name":"郑莉","age":30}]';
+    console.log(eval("("+str+")"));*/
+    //我们用eval解析json的时候要添加小括号；
+    //判断JSON.parse()是否兼容
+
+
+    var str = '[{"name":"叶单","age":30},{"name":"段晓青","age":30},{"name":"郑莉","age":30}]';
+    console.log(utils.jsonParse(str));
+
+
+</script>
+</body>
+</html>

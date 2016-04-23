@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   // console.log(num);
+    // Uncaught ReferenceError: num is not defined
+    //未捕获的引用错误
+    try{
+        console.log(num);
+        //先试一试
+    }catch(e) {
+        //console.log(num);//如果这在报错就终止执行
+        //console.log(e);//ReferenceError: num is not defined(…)我们当前出的错误
+        //抛错 组织代码执行
+        //throw new Error("出错了。。。停");//手动的抛出异常
+        //throw new TypeError("你必须传递一个函数")
+        // throw new ReferenceError() //引用错误
+        //throw new RangeError(); 范围异常
+
+        //如果不行就走catch
+    }finally {
+        console.log(1);
+        //不管你行不行都要走
+    }
+    console.log(1)
+
+   function Arr(fn){
+        if(!(typeof fn =="function")){
+            throw new TypeError("你必须传递一个函数")
+        }
+    }
+    Arr([])
+
+
+
+</script>
+</body>
+</html>

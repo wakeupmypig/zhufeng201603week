@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="oUl">
+    <li>1</li>
+    <li>3</li>
+    <li>2</li>
+    <li>5</li>
+</ul>
+<div style="width: 100px;height: 100px;background: red"></div>
+<script>
+    var oLis = oUl.getElementsByTagName('li');
+    for(var i = 0; i<oLis.length;i++){
+        i%2?oLis[i].style.background="red":void 0;
+    }
+    //重绘和回流
+    //缺点 把以前的删除，在扔进去
+    /*var ary = [2,3,9,3,6,7,4,23];
+    //innerHTML
+    var str= '';
+    for(var i = 0;i<ary.length;i++){
+        str+= '<li>'+ary[i]+'</li>';
+    }
+    oUl.innerHTML = str;*/
+    //对以前的没有影响
+    /*var ary = [2,3,9,3,6,7,4,23];
+    for(var i = 0;i<ary.length;i++) {
+        var oLi = document.createElement("li");
+        oLi.innerHTML=ary[i];
+        (function (oLi,i) {
+            //保存oLi ，ｉ；
+            setTimeout(function () {
+                oUl.appendChild(oLi);//每次循环一次就增加了一个
+            },1000*i);
+        })(oLi,i)
+    }*/
+    //每次后面的div都在移动
+
+    //创建文档碎片（垃圾箱）
+    var ary = [2,3,9,3,6,7,4,23];
+    var fg = document.createDocumentFragment();
+    for(var i = 0; i<ary.length;i++){
+        var oLi = document.createElement("li");//创建一个li
+        oLi.innerHTML = ary[i];
+        fg.appendChild(oLi);
+    }
+    oUl.appendChild(fg);
+    //一次扔到页面，并且不对以前的影响
+    //重绘 ：样式改变，外观改变
+    //回流：一次性扔到页面里
+    //作业：如何减少重绘和回流？
+
+</script>
+</body>
+</html>
