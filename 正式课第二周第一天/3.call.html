@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //"use strict";//严格模式
+    //原型上的slice
+    Array.prototype.slice = function () {
+        //this是[1,2,3,4] ，谁调用的this就是谁
+        var arr = [];
+        for(var i =arguments[0]; i<arguments[1];i++){
+            arr[arr.length] = this[i];
+            //默认arr.length =0 之后往里面添加多了以后数组length增加
+            //给剩下的依次赋值
+        }
+        return arr;
+    }
+    //定义在Array类上的公有方法，所以Array的实例才能调用
+    //console.log([1,2,3,4].slice(0,3));//包前不包后
+
+
+    /*Function.prototype.call = function () {
+        //Function上的公有方法；
+
+    }*/
+    //1.call的用处改变this指向
+    //2.将我们的第一个参数变为当前执行函数内的this
+    //3.this指向后面的参数就是我们真正要传递的参数（依次当参数传入）
+   /* Function.prototype.call= function () {
+        console.log(this.toString().replace("this","obj"));
+        eval("var arr = "+this.toString().replace("this","obj"));
+        arr();
+        //eval 将字符串代码转换成js执行
+        /!*!//当前this就是我们的fn1
+        //console.log(this.toString());//变成字符串
+        //console.log(this.toString().replace('this','obj'));
+     eval(" var arr = "+this.toString().replace('this','obj'));//在字符串内把this变成obj
+        //让字符串执行
+      //  console.log(arr());
+        arr();//让我们的fn1 执行 也是让我们的this执行
+        //1.先改变函数内的this指向
+        //2.再让this执行*!/
+    }*/
+    
+   // "use strict";//严格模式
+    var obj = {name:'jw'}
+    function fn1(a,b){
+        console.log(this);
+    }
+    //fn1();//默认全局执行 this是window
+    //fn1.call(obj,1,2);//第一个参数就是我们this
+
+    //call的特点
+    fn1.call();//没传递this 默认的window
+    fn1.call(undefined);//如果是undefined也是window
+    fn1.call(null);//如果是null也是window
+    //如果在严格模式先call里不写this 那么this就是undefined 你写什么是什么
+    fn1.call(1);
+    function fn1(){
+        console.log(1);
+    }
+    function fn2(){
+        console.log(this);
+    }
+    fn1.call(fn2);
+    //第一步 将fn1里的this改变成fn2  之后让fn1执行
+
+    /*Function.prototype.call= function () {
+        eval("var arr = "+this.toString().replace("this","obj"));
+        this();
+    }*/
+    fn1.call(fn2);
+    ;(fn1.call.call.call).call(fn2);//让fn2执行
+    //一个call就是把前面的方法执行
+    //两个call或者以上就是找到Function.prototype.call方法让里面的this变成括号里的this，让其执行（让括号里的函数执行）不会改变fn2里的this
+
+
+
+    Function.prototype.call(fn1);
+    //让空函数里的this变为fn1 让空函数执行
+    Function.prototype.call.call(fn1);
+    //先找到原型上的call方法 让原型上的call方法里面的this变为fn1 之后让fn1执行
+
+
+
+
+
+
+</script>
+</body>
+</html>

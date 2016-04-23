@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //call继承只能继承父类私有的 ->这就是call继承
+    function Parent(name,age){
+        this.name=name;
+        this.age = age;
+    }
+    Parent.prototype.play = function () {
+        console.log(1);
+    };
+    function Child(){
+        //以儿子的this执行父亲的构造方法 （借用父亲的构造方法）
+        Parent.call(this,"jw",18);
+        //只能继承私有的 因为父亲构造函数里的都是私有的
+    }
+    var c = new Child();
+    console.log(c.play());
+</script>
+</body>
+</html>

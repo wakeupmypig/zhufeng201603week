@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //求最大值最小值
+    var arr = [1, 2, 3, 8, 3, 8, 0, 2, 8, 93, 3];
+    //1.假设法
+    //假设第一个是最大的
+    var min = arr[0];
+    var max = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        /* if(min>arr[i]){ //如果最小的大于了当前，那么就让最小的等于当前的
+         min=arr[i];
+         }*/
+        min > arr[i] ? min = arr[i] : false;
+        max < arr[i] ? max = arr[i] : false;
+    }
+    console.log(min);
+    console.log(max);
+
+    var arr = [1, 2, 100, 3, 10, 9, 22, 33, 2, 3, 4, 6, 78];
+
+    /* var newArr =  arr.sort(function (a,b) {
+     return a-b;
+     })//直接sort只能算10以内的*/
+    // console.log(newArr);
+    //获取第一项 newArr[0];
+    //获取最后一项 newArr[newArr.length-1];
+
+
+    //3.eval  "1,2,3,9,10,22,33,100" arr.toString();
+    var str = eval(arr.toString());
+    // console.log(str);
+    var a = eval("Math.max("+arr.toString()+")");
+    //将字符串变成js执行
+    console.log(a);
+    //,的问题
+    var a = (1, 2, 3, 4, 5); //取逗号的最后一项；
+    function fn1() {
+        console.log(this);
+    }
+    var obj = {
+                fn: fn1
+            }
+            ;
+    (1, obj.fn)(); //直接调用fn点前面的是谁this就是谁，如果有逗号执行的时候直接把函数拿下来
+    //console.log(a);
+   /* var arr = [1, 2, 100, 3, 10, 9, 22, 33, 2, 3, 4, 6, 78];
+    function bb(a,b){
+        console.log(a,b);
+    }
+    bb.apply(null,[1,2])*/
+
+    //通过apply方法传递的是数组的特性
+   var max =  Math.min.apply(null,[1, 2, 100, 3, 10, 9, 22, 33, 2, 3, 4, 6, 78]);
+    console.log(max);
+
+</script>
+</body>
+</html>

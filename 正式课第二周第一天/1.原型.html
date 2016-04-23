@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //基本数据类型和引用数据类的区别 引用类型查找空间
+    function Fn(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Fn.prototype.goHome = [1,2,3];
+    var f  = new Fn();
+    //f.goHome = null;
+    //这个是增加新的私有属性
+    //f.goHome[0]=100;//多了一步查找的过程，先去找prototype
+    f.__proto__.goHome = null;
+    var f2 = new Fn();
+    console.log(f2.goHome);
+    console.log(Object.prototype==Function.prototype.__proto__);
+
+    ga
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

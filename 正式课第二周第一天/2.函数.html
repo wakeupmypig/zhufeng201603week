@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数特点</title>
+</head>
+<body>
+<script>
+    function fn(){
+        function fn1(){
+            function fn2(){//fn2.caller.caller();
+            }
+            fn2();
+        }
+        fn1()
+    }
+    console.log(fn.caller);
+    fn()
+    console.dir(fn);
+    //函数中的caller 找到的是当前执行的一个caller一级,找的数函数，如果没有返回null
+    //length 形参的长度
+    //name是函数的名字
+    //prototype
+    function arg(a,b,c,d){
+        
+    }
+    console.log(arg.length);
+    console.dir(arg);
+    //函数的几个作用
+    //普通函数 直接函数名() 产生私有作用域，形参赋值，预解释，代码从上到下执行
+    //类：new 函数（如果没有参数可以省略括号）；this指向的就是当前实例；prototype存储公有方法的
+    //函数可以当作对象
+    function A(){
+        this.bb = 100;//给实例添加的
+    }
+    A.aa = "jw";//name 是函数的属性，表示函数名字 无法更改
+    var a  = new A;
+    console.log(a.aa);//取不到是函数上的属性，不是实例上的，不会继承；
+    //三个特性 普通函数 类 对象
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
