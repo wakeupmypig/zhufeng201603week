@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*任意数求和*/
+    function sum(){
+        //arguments  类数组 有索引 有长度
+        var total = 0;
+        //把参数列表中的每一项取出来
+        for(var i =0; i<arguments.length;i++){
+            var cur = arguments[i];
+            //判断每一项是否是有效数字
+            if(!(isNaN(cur))){
+                //把是有效数字的转换成number进行累加
+                total+=Number(cur);
+            }
+        }
+        //把求出的结果抛出到外面
+        return total;
+    }
+
+    var a  =sum(1,2,3,4,"5","6px");
+    console.log(a);
+
+
+
+
+</script>
+</body>
+</html>

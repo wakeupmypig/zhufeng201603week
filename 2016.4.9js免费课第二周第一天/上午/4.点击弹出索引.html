@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button">
+    <input type="button">
+    <input type="button">
+    <input type="button">
+    <input type="button">
+<script>
+    var oInputs = document.getElementsByTagName("input");
+    for(var i = 0; i<oInputs.length;i++){
+        oInputs[i]["zhufeng"]=i;
+        oInputs[i].onclick = function () {
+            alert(this.zhufeng);
+        }
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    /*
+    * 日期Date  typeof Date  "function"
+    * */
+
+    var d = new Date();//实例创建 日期对象
+    //div1.innerHTML = d;
+    d.getYear(); //获得年 按照1900年算
+    d.getFullYear();//获得满年
+    d.getMonth()+1;//获得的月是0-11;
+    d.getDate();//获得日期
+    d.getDay(); //周日是0  1-6
+    d.getHours();//获取小时
+    d.getMinutes();//获取分钟
+    d.getSeconds();//获取秒
+    d.getMilliseconds();
+    var str = "";
+    var day ="日一二三四五六"
+    /*console.log(d.getDay());
+    console.log( );*/
+
+
+
+    setInterval(function () {
+        var date = new Date();
+        var y = date.getFullYear()
+        var M = date.getMonth()+1;
+        var d = date.getDate();
+        var dd=day.charAt(date.getDay());
+        var mi = date.getMinutes();
+        var s = date.getSeconds()
+        //var arr = [d.getFullYear(),d.getMonth()+1,d.getDate(), "星期"+day.charAt(d.getDay()),d.getHours(),d.getMinutes(),d.getSeconds()];
+        div1.innerHTML=y+"年"+M+"月"+d+"周"+dd+mi+"分钟"+s+"秒"
+    },1000);
+
+    //拿到的日期都是本地时间（本地的）
+
+
+
+
+</script>
+</body>
+</html>

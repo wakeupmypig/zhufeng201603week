@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--
+    ./相对
+-->
+<link rel="stylesheet" href="./css/index.css">
+<body>
+<!--""""嵌套问题-->
+<div id="div1" style="width: 100px" onclick="alert('欢迎大家来到珠峰培训')"></div>
+<style>
+    /*div1是否能调用到这个样式?*/
+    #div1{
+        height: 100px;
+    }
+</style>
+<script src="./js/index.js">
+    alert("我就不好好学习");//代码没有执行
+</script>
+<script>
+    //js从上到下执行
+    alert("大家都注意听课");
+</script>
+<script>
+    /*
+    * 1).css的引入方式
+    * 1.行内样式 把我们的样式直接写在标签内(操作当前标签)
+    * 2.内嵌样式  在我们当前html页面内用style标签包含的
+    * 3.外链样式 在外部写个css文件通过link引入到我们的页面
+    * 4.导入式  在一个css文件里导入另一个css
+    *  一般不会用导入式
+    * 2) js的引入方式
+    * 1.行内 把我们的js代码写在标签内 （只能对标签进行操作）
+    *   不安全 可以更改
+    * 2.内嵌样式 用script标签包裹的
+    * 3.外链样式 script:src
+    *    em；1.通过我们script标签引入的js，里面的代码块内不能写任何代码，你写了也不会报错，只是没有作用
+    *        2.我们要先加载css ，等待html加载后，加在我们的js
+    *           1）保证css的加载完成，我们html保证好看
+    *           2）***js是用来操作元素的，要等待我们的html加载完
+    *
+*           可以用document.write()写入一个js
+*
+*
+    * */
+
+
+</script>
+
+</body>
+</html>

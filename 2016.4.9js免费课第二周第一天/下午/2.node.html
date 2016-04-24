@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--123-->
+<div>
+    <ul id="oUl"><li></li><li id="oli"></li>
+        <li></li>
+    </ul>
+</div><script>
+    //node什么是node 在html中所有元素都是节点
+    //节点里包括 元素 文本 注释。。。
+    //我们要掌握的 nodeType(节点类型) nodeName(节点名字) nodeValue(节点值)
+    //元素        1                  大写的标签名         null
+    //文本        3                  #text              文本里的值
+    //注释        8                  #comment          注释里的内容
+    //document    9                   #document           null
+    //节点和节点之间的关系
+    //获取所有节点
+    //1.childNodes(类数组类型)
+    //2.children 获得所有标签元素 //ie8不兼容在低版本浏览器下可以拿到注释节点
+   /* console.log(document.body.childNodes);
+    for(var i = 0; i<document.body.childNodes.length;i++){
+        console.dir(  document.body.childNodes[i]);
+    }*/
+    //3.parentNode 获取父亲节点
+    //4.previousSibling 获取哥哥(上一个）节点（包括注释文本，注释节点）
+    //5.previousElementSibling 获取哥哥节点（元素节点） 此方法不兼容
+    //6.nextSibling获取弟弟(下一个）节点（包括注释文本，注释节点）
+    //7.nextElementSibling获取弟弟节点（元素节点） 此方法不兼容
+    //8.firstChild 大儿子
+    //9.lastChild 小儿子
+    //10.firstElementChild;
+    //11.lastElementChild
+    console.log(oUl.firstChild);
+</script>
+</body>
+</html>

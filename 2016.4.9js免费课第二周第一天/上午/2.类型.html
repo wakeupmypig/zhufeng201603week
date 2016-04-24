@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 转换number
+    * 1.Number();
+    * Number('12');
+    * Number(12);
+    * Number("12px") - >NaN
+    * Number(""); ->0
+    * Number(true); - >1
+    *
+    * Number(null);->0
+    * Number(undefined) ->NaN
+    *
+    * Number([]); 先调用我们的tostring,把[]转换成字符串""
+    * Number({}); toString[object Object]
+    *
+    *
+    * parseInt 从左到右依次查找碰到一个不是有效数字，就把前面找到的返回，如果第一个不是就直接返回NaN
+    * parseFloat 同parseInt 多识别一个小数点
+    * NaN not a number不是一个数（是数字类型）
+    * NaN !=NaN
+    * isNaN()是不是有效数字 是返回false  不是返回true
+    *
+    *
+    * Boolean
+    * ! !!
+    * !一个叹号 先把自己转换成boolean类型 在进行取反
+    * !!把自己变成boolean类型
+    * NaN 0 "" null undefined 在自身做boolean运算是假
+    * if里的条件
+    * if("3px"+3){ 相当于字符串拼接 3px3
+         alert(12)
+         }
+    *if("3px"*3){ 运算符无法算出的就是NaN
+     alert(12)
+     }
+    * + - * /
+    * '10'-1; 10-1=9;
+    * '10'*3; 先看能不能转换成num
+    * '10px'*3 转换不了就是NaN
+    * * / - 都一样
+    * 1+"1"
+    * 当一个数字类型的和字符串运算的时候
+    * 会变成字符串拼接
+    * 1+1 数字和数字做运算
+    * 1+undefined NaN
+    * //字符的三个作用 数字运算   无法运算NaN 字符串拼接
+    * 自己和别人比较(转换成相同类型进行比较)
+    * 不同类型之间的比较 //同类型的不会类型转换
+    * 对象和对象比较 永远不相等 比较的是空间 []==[]
+    * 对象和字符串比较 []=="",把对象转换成字符串 字符串和字符串比较
+    * 对象和布尔比较 []==true 对象先调用toString "" 放到number里 把boolean类型也转换成number
+    * 对象和数字比较  []==true 对象先调用toString "" 放到number里
+    * 字符串和数字比较
+    * 字符串和boolean比较
+    * boolean和数字比较
+    * null和undefined == 是相等
+    * null和undefined和其他类型比较都不相等
+    * null==0 不相等
+    * NaN 和NaN  不相等
+    *
+    *
+    * === 严格比较
+    * 先比较数据类型，如果数据类型不相等 那就不相等
+    * */
+    console.log(!3);
+    console.log(!!NaN);
+
+    /*if(!4){
+        alert(1)
+    }*/
+    /*if("3px"*3){
+        alert(12)
+    }*/
+//    alert('10'*3)
+
+   /* if("3px"+3){//这是做运算 //+号特殊相当于字符拼接
+        alert(1)
+    }*/
+    console.log(null+undefined);//->0+undefined=NaN
+    console.log(1+[]);//1+"" ="1"
+    console.log(1+[]+undefined);
+    //字符串拼接从左面开始先拼接如果编程字符串，后面都会变成字符串拼接 -》"1"+undefined = "1undefined"
+    console.log(1+true);//2
+    
+    console.log(1+true+[]+undefined+"123"+{});
+
+
+
+    /* console.log("0"=="");
+
+     console.log(null==0);*/
+
+    //"2undefined123[object Object]"
+   /* console.log( [0]==0);
+    console.log("0"==0);
+    console.log([0]=="0");*/
+</script>
+
+</body>
+</html>

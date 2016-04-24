@@ -1,0 +1,28 @@
+*{ margin: 0; padding: 0;}
+#tab {
+    width: 500px;
+    margin:0 auto;
+    border: 1px solid yellowgreen;
+}
+
+ul li{
+    list-style: none;
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: solid 1px red;
+}
+#tab div{
+    border: 1px solid darkblue;
+    width: 300px;
+    height: 300px;
+    display: none;
+}
+ul li.select{
+    background: -webkit-linear-gradient(top left,yellow,blue);
+}
+#tab div.select{
+    display: block;
+}

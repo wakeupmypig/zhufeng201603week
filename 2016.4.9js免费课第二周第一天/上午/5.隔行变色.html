@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    /*隔行变色*/
+    //控制行和列
+    //双for循环  switch case
+    var str = "";
+    for(var i = 1;i<=9;i++){
+        for(var j = 1;j<=i;j++){
+            str+=i+"*"+j+"="+(i*j)
+        }
+        str+='<br>';
+    }
+    var oDiv = document.getElementById('div1');
+    oDiv.innerText = str;
+    oDiv.innerText +=1;
+    //innerHTML 往页面里写html代码 直接把以前的覆盖掉，把str写进去
+    //innerText 不识别html标签 在火狐下不兼容
+
+</script>
+</body>
+</html>

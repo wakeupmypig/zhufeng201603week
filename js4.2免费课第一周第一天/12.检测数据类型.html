@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+</head>
+<body>
+<script>
+    /*
+     * 检测数据类型的方式
+     * 检测方式：四种方式
+     * 1.typeof
+     * 2.instanceof
+     * 3.constructor
+     * 4.Object.prototype.toString.call();
+     *
+     *
+     *
+     * 1.typeof方法 用法 typeof("我们要检测的值") typeof 1"我们要检测的值"
+     * 利用typeof检测类型  输出的都是字符串+数据类型
+     * */
+    //typeof num;//双引号number
+
+    //typeof null 输出的值是object;
+    //typeof可以检测出哪些类型
+    //number boolean string undefined object function
+
+    var num = 1;
+    console.log(typeof num); //"number"
+    var num = true;
+    console.log(typeof num);//"boolean"
+    var num = 'hello';
+    console.log(typeof num);//"string"
+    var num = null;
+    console.log(typeof num);//"object"
+    var num = undefined;
+    console.log(typeof num);//"undefined"
+    var num = {};
+    console.log(typeof num); //"object"
+    var num = [];
+    console.log(typeof num);//"object"
+    var num = /^\w+\d+$/;
+    console.log(typeof num);//"object"
+    var num = function () {
+    };
+    console.log(typeof num); //"function"
+
+
+    //两个或两个以上检测出来的都是string类型的
+    console.log(typeof typeof (typeof {}));//"object"
+
+</script>
+</body>
+</html>

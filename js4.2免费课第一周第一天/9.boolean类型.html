@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * boolean类型 （true false）
+    * ! 取反
+    * 自己和自己比较
+    * 1）先将自己转换成boolean 类型 再进行取反
+    * 哪些值是false 就这五个是假的 其他都是真的
+    * NaN 0 '' null undefined
+    * !! 取反在取反 =  相当于把自己转化成boolean类型 ==Boolean
+    * 自己和别人比较(==)
+    * 通过console.log()打印的内容会默认在控制台上去掉双引号
+    * 单等号是赋值 ==是比较
+    * 对象和其他类型比较 先将对象转化成字符串 toString()
+    * 如何和数字和boolean比较 将我们的字符串强制转换成数字 Number()
+    *
+    *
+    *
+    * 1.对象和对象比较[]==[] 永远不相等
+    * 2.对象和我们字符串比较[]=="" 先将对象转化成我们的字符串
+    * 在进行比较
+    * 3.对象和数字比较[]==1; 先调用我们的toString方法将对象转化成字符串，在将字符串转换成数字（强制转化的Number()）;
+    * 4.对象和布尔进行比较[]==true; 同对象转换成数字 再将boolean类型转化成数字
+    * 5.字符串和数字
+    * 6.字符串和boolean类型
+    * 7.boolean和数字
+    * 8.null和undefined 相等
+    * 9.null和undefined与其他类型比较都不相等
+    * */
+    //console.log(!!undefined);
+    console.log([]==![]);
+    //console.log([]=="");
+    //console.log([].toString());
+
+    console.log({}.toString())
+    
+    console.log({}=='[object Object]');
+
+
+    console.log('0'=='');//同类型下 不会转换
+//     'a'=='b'
+
+
+
+
+    console.log(Boolean(null));
+
+
+
+
+    console.log([1]==1);
+    console.log(null==undefined);
+    /*
+      严格比较
+    * === 绝对比较 包括比较我们的数据类型 数据类型不一样那就不用比了 肯定不相等
+    * */
+
+
+    console.log([1]===1);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .c0{
+            background-color: aqua;
+        }
+        .c1{
+            background-color: greenyellow;
+        }
+        .c3{
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+<ul id="oUl">
+    <li class="c0">习近平出席核安全峰会讲话全文 回国 专题习近平出席核安全峰会讲话全文 回国 专题习近平出席核安全峰会讲话全文 回国 专题</li>
+    <li class="c1">李克强会见美国国会议员代表团 营改增</li>
+    <li class="c0">房地产限购政策频出 一线城市交易量不断下滑</li>
+    <li>习近平出席核安全峰会讲话全文 回国 专题</li>
+    <li>李克强会见美国国会议员代表团 营改增</li>
+    <li>房地产限购政策频出 一线城市交易量不断下滑</li>
+    <li>习近平出席核安全峰会讲话全文 回国 专题</li>
+    <li>李克强会见美国国会议员代表团 营改增</li>
+    <li>房地产限购政策频出 一线城市交易量不断下滑</li>
+    <li>习近平出席核安全峰会讲话全文 回国 专题</li>
+    <li>李克强会见美国国会议员代表团 营改增</li>
+    <li>房地产限购政策频出 一线城市交易量不断下滑</li>
+</ul>
+<script src="js/index.js"></script>
+
+
+<!--
+<script>
+    /*
+    * 分析思路
+    * 先拿到所有的li，找到奇数行和偶数行 分别给不同的样式
+    * 1）要操作谁 就要获取谁
+    * 2）context.getElementsByTagName(""); context上下文
+    * 通过getElementsByTagName("")拿到的是一个集合（类数组）
+    * 每一项都有一个编号，从0开始 最后一项的变化length-1
+    * 没一个类数组都有length属性，表示一共多少项
+    * 就算里面只有一个我们也要通过[索引]去取
+    * .item（索引）去取唯一的那一个
+    * id前只能放document
+    * 3)通过元素.className设置class名字
+    * 4)经过的·每一个li·要添加鼠标经过事件 鼠标离开事件
+    * 当鼠标移动上去的时候添加一个经过的样式，鼠标移开，在变回以前的样式
+    *
+    *
+    *
+    * */
+    var oUl = document.getElementById('oUl');
+    //拿到我们页面上唯一ul
+//    var oLis = document.getElementsByTagName('li');
+    //拿到页面上所有的li
+    var oLis = oUl.getElementsByTagName('li');
+    //最后一项
+    //console.log(oLis[oLis.length-1]);
+    console.log(oLis.item(0));
+    console.log(oLis)
+    for(var i=0;i<oLis.length;i++){
+        var li = oLis[i]; //我们拿到每一个li
+        //所有元素都是对象类型
+        if(i%2){
+            li.zhufeng = "c1";
+        }else{
+            li.zhufeng = "c0";
+        }
+        
+        //console.log(li.zhufeng);
+
+
+
+
+
+        //拿到后增加class名
+        //取模 2%2==0   1%2==1 3%2=1 。。。 9%2==1
+        //根据取模后的值添加不同的样式
+        li.className='c'+(i%2);
+       // !(i%2)?li.className='c0':li.className='c1';
+       /* if(!(i%2)){
+            li.className='c0';
+        }else{
+            li.className='c1';
+        }*/
+//        li.className=c0/c1;
+        //元素.onmouseover
+        li.onmouseover = function () {
+            //鼠标经过时要做的事情;
+            this.className="c3";
+        }
+        li.onmouseout = function () {
+            //鼠标离开时要做的事情
+            //离开的时候要变回去
+            //变回去的时候 不是变成c0 就是变成c1i%2;为什么一直都是c0
+            //console.log(i);//变成了length？ 相当于for循环执行完的i；
+//            this.className="c"
+            this.className=this.zhufeng;
+        }
+    }
+
+
+
+
+   // console.log(oLis.style.backgroundColor);
+
+</script>
+-->
+
+</body>
+</html>

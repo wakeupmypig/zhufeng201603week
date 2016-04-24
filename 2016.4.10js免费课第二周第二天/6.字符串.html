@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //什么是字符串 用'' ""包裹的 里面包含0个字符或多个字符
+    //String 类  typeof String - >"function"
+
+    //"zhufengpeixun" 我们字符串的实例
+    //字符串有长度 字符串也有索引 我们可以[索引]取出具体的值
+    //字符串具有不变性
+   // console.log("zhufengpeixun"[0]);
+    //区别(不能改)
+    var str = "zhufengpeixun";
+    str[0]=100;
+   // console.log(str);
+    //能改
+    var arr = [1,2,3];
+    arr[0]=5;
+  //  console.log(arr);
+
+
+    /*
+    *  字符串的第一个方法
+    *   1.charAt(0)  == [0] //取出具体索引代表的值
+    *   2.charCodeAt(0) 取出对应索引的值的ASCII值
+    *
+    *   3.str.substr(m,n);从索引m开始，截取“n个” //数组里的splice
+    *   4.str.substring(m,n);都是索引 包前不包后  索引是从0开始
+    *   5.str.slice(m,n); 和substring一样 但是支持负数
+    *   //字符串的长度+负数的索引  取不到是"";(从左到右找)
+    *
+    *   6.str.toUpperCase(); //对字母生效
+    *   7.str.toLowerCase();
+    *
+    *   8.str.split(); 用字符分割成数组
+    *
+    *   9.indexOf /lastIndexOf  字符串中方法兼容 如果找不到就是-1;
+    *
+    *   10.str.localCompare(); 字符和字符串比较 阿门 张
+    *   //把两个字符串转换成拼音进行比较  比较字母顺序，值 -1 1 0
+    *
+    *   11.str.replace() //替换把哪个字母换成新的字符 replace只替换一次
+    *   12 str.match()
+    *
+    *
+    *
+    * */
+    /*var str  = '123456';
+    str[0]=100;
+    console.log(str);
+    console.log(str.charAt(0));
+    */
+   /* var str = 'A23456';
+
+    str.charCodeAt(0);
+    console.log(str.charCodeAt(0));*/
+    var str  = '123123';
+   // console.log(str.slice(-3,1));
+
+    
+    
+    
+   // console.log(str.toUpperCase());
+
+
+
+    var str = "abcdefga";
+    var arr = str.split("de");
+    console.log(arr);
+    console.log(str.lastIndexOf("f"));
+
+
+    console.log("阿门".localeCompare("张"));//-1就是他比他在前
+    console.log("张".localeCompare("阿门"));//1就是他比他在前
+    console.log("张".localeCompare("张"));//0就是他比他在前
+
+   // console.log(  str.replace(/a/g,"b"));
+    //
+
+
+
+
+
+
+
+
+
+  /*  pop push shift unshfit splice slice concat join toString reverse sort
+    indexof lastindexof forEach map */
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+    //console.log(new String("zhufeng") instanceof String);
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

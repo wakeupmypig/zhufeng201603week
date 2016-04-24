@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * js中的三个循环   for  for in while循环
+    *
+    * */
+    /*for(声明一个初始值;判断条件;步长){
+        //循环体
+    }*/
+
+    //var num = 0;
+    // 先声明 ，在判断，在走我们的循环体 在执行++操作
+    //debugger;//浏览器的调试 F10进行下一步
+    //source 源码 找到我们对应的页面 之后在行号找到我们想打断点的地方
+    //代码都是从上到下执行的 console.log();
+    /*for(var num=0;num<5;num++){
+        //当条件成立的时候走我们循环体
+        console.log(num);
+    }
+    console.log(num);*/
+    //当我们最后条件不成立还会在加一次（因为+完了以后才不成立）
+
+    //continue break;
+    //switch case 都是 break终止 判断
+    //在for循环中，continue和break下面的代码 都不执行(下面代码没有任何反应)
+    //代码遇到break后循环就不再执行了，而且不进行累加操作
+    //continue跳出本次循环 进行继续累加操作，忍着痛也要把代码执行完
+    /*for(var i = 0; i<5;i++){
+        console.log("continue",i);
+        continue;
+        console.log(i);
+    }
+
+    for(var i = 0; i<5;i++){
+        console.log("break",i);
+        break;
+        console.log(i);
+    }*/
+    for(var i = 0; i<10;i++){
+        if(i<=7){
+            i+=2;
+            continue;
+        }
+        i+=3;
+        break;
+     //永远不输出   console.log(i);
+    }
+    console.log(i);
+</script>
+
+</body>
+</html>

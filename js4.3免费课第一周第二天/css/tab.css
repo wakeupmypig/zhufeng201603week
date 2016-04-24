@@ -1,0 +1,6 @@
+*{margin: 0; padding: 0}
+#tab{width: 500px;height: 200px;position: absolute;left: 50%;top: 50%; margin-left: -250px; margin-top: -100px; border: 1px solid red}
+ul li{ list-style: none; display: inline-block;width: 90px;height: 40px;line-height:40px; border: 1px solid saddlebrown; text-align: center; border-radius: 1em}
+#tab div{display:none;border: 1px solid chartreuse; width: 400px;height: 100px}
+ul li.active{background: -webkit-linear-gradient(blue,red,yellow);}
+#tab div.active{display: block; margin-top: -1px;position: relative; z-index: 10}

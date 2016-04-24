@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var time = "2016-4-10 10:00:00";
+    //转换成2016年4月10日10点00分00秒数
+
+    //split分割
+
+    function formatTime(timer){
+        var newArr = timer.split(" ");
+        var left = newArr[0].split("-");
+        var right = newArr[1].split(":");
+ var str = left[0]+"年"+left[1]+"月"+left[2]+"日"+right[0]+"点"+right[1]+"分"+right[2]+"秒";
+        return str;
+    }
+    console.log(formatTime(time));
+   // formatTime(time);
+    //replace方法
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

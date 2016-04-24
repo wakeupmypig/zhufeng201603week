@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <ul id="div1" class="div1">
+        <!--通过byTagName拿到的是类数组 [0]-->
+        <li></li>
+        <li></li>
+        <li></li>
+        <div></div>
+        <div></div>
+        <div></div>
+    </ul>
+</div>
+<script>
+    /*         nodeType    nodeName  nodeValue
+    * 元素       1        大写的标签名   null
+    * 文本       3          #text       文本里的内容
+    * 注释       8          #comment    注释的内容
+    * document   9          #document    null
+    * */
+
+    //children 在ie8不兼容 多拿了注释节点
+    /**
+     *
+     * @param ele 通过当前元素获取所有的子标签元素
+     * @param tagName 获取匹配标签名的元素
+     * @returns {Array} 获得到的所有子标签
+     */
+    /*function getChildren(ele,tagName){
+        //获得所有的子节点
+        var arr = [];//定义了一个盒子装我们的所有元素节点
+        var nodes = ele.childNodes;//当前元素下的所有子节点（类数组 有长度可以用for循环遍历）
+        for(var i=0; i<nodes.length;i++){
+            var node = nodes[i];//取到每一个节点
+            //如果是标签，就放到数组里
+            if(node.nodeType==1){
+                //判断是否传递了tagName参数
+                if(typeof tagName=="undefined"){
+                    //如果没传递 就是获取所有子元素标签
+                    arr.push(node);
+                }else{
+                    //如果传了我们就要通过tagName去判断当前的标签是否是我们想要的标签
+                    //大写的标签名
+                    //toUpperCase();转成大写
+                    //如果当前的节点名字===我们传进来的名字
+                    if(node.nodeName==tagName.toUpperCase()){
+                        arr.push(node);
+                    }
+                }
+
+            }
+        }
+        return arr;
+    }*/
+    //兼容的getChildren方法
+    function getChildren(ele,tagName){
+        console.log(tagName);
+        var arr = [];
+        var nodes= ele.childNodes;
+        for(var i =0;i<nodes.length;i++){
+            var node = nodes[i];
+            if(node.nodeType==1){
+                if(tagName){
+                    arr.push(node);
+                }else{
+                    if(node.nodeName==tagName.toUpperCase()){
+                        arr.push(node);
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+
+
+
+
+
+
+    var oUl = document.getElementsByTagName("ul").item(0);
+    console.log(getChildren(oUl,"li"));
+
+
+
+
+
+
+</script>
+</body>
+</html>

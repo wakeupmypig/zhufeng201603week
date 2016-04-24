@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Math   typeof Math -> "object";
+
+    //1.绝对值 Math.abs(); //将传进来的数变成正数
+    //2.平方  Math.pow(); 平方 2是底数 3是指数
+    //3.开平方 Math.sqrt();  默认开平方
+    //4.向上取整Math.ceil();  向上取整
+    //5.向下取整 Math.floor(); 地板
+    //6.四舍五入 Math.round();//-12.5 -12
+    //7.去最大值
+    //8.最小值
+    //9.随机数Math.random(); 0-1之间[0,1)
+    //Math.max()//不是数组
+   /* console.log( Math.max(1,2,3,8,7,6));
+    console.log( Math.min(1,2,3,8,7,6));*/
+
+    //取一个几到几的数 包括左边和右边(1,101)
+//                0.9999  *100
+
+
+
+
+    //1.如果传递的是非有效数字 返回0-1之间
+    //2.如果传递的是两个数 就取出这两个数之间（包括两个）的随机数
+    //3.如果传递的两个数大小是反的 我们还要求出反的
+
+    //Math.round(Math.random()*(大-小)+小);
+    function getRandom(a,b){
+        //如果 a,和b之间的有一个是非有效数字直接返回0-1之间的
+        if(isNaN(a)||isNaN(b)){
+            return Math.random();
+        }                           // 0.9999*9+1
+        return Math.random()*(b-a)
+    }
+    console.log(Math.round(Math.random()*(1-10)+10));
+    for(var i = 0; i<1000;){
+     //   console.log(getRandom(10,1));
+        i++;
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

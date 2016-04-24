@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{ margin: 0; padding: 0}
+    html,body{
+        width: 100%;
+        height: 100%;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        /*css3居中*/
+    }
+    #div1{
+        outline: 1px solid red;
+        cursor: pointer;
+    }
+</style>
+<body>
+<div id="div1">
+
+
+</div>
+<script>
+    /*
+    * 去随机四位不同的验证码
+    * 先随机出四位
+    * */
+    var str = "abcdefghijklmnopqrstuvwxyz"+"abcdefghijklmnopqrstuvwxyz".toUpperCase()+"0123456789";
+
+
+    function getRandom(a,b){
+        if(isNaN(a)||isNaN(b)){
+            return Math.random();
+        }
+        return Math.round(Math.random()*(b-a)+a);
+    }
+    function getCode(){
+        var num = "";
+        for(var i=0; i<4;i++){
+            //用indexof判断
+            var cur = str[getRandom(0,61)];
+            //获取当前在整个字符串中查找，查找到表示重复，进行下一次循环切记contiune会执行i++ 所有要i--;
+            if(num.indexOf(cur)>-1){
+                i--;
+                continue;
+            }
+            num+=cur;
+        }
+        div1.innerHTML=num;
+    }
+    getCode();
+    div1.onclick = getCode;
+    //获取大小重复的 A a也算重复
+
+
+
+
+
+
+
+
+    /*console.log(str.length);//索引是0-61
+        function getRandom(){
+            //如果是非有效数字 就返回0-1之间
+            if(isNaN(arguments[0])||isNaN(arguments[1])){
+            return Math.random();
+        }
+        //随机取 [m,n]m到n之间包括m和n
+        return  Math.round(Math.random()*(arguments[1]-arguments[0])
++arguments[0]);
+    }
+    //getCode往div里生成四位验证码
+    function getCode(){
+        var num = "";//先声明一个用来装字符串的容器
+        for(var i = 0; i<4;i++){
+            //从字符串里随机取0-61的索引查找字符串内对应的字符进行拼接
+            num+=str.charAt(getRandom(0,61))
+        }
+        //扔到盒子里
+        div1.innerHTML = num;
+    }
+    getCode();//默认初始化一次
+    //点击一下div 执行一次获得验证码的方法
+    div1.onclick  = getCode;*/
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select" name="aaa">卡1</li>
+        <li class="select">卡2</li>
+        <li class="select">卡3</li>
+    </ul>
+    <div>内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <input type="radio" name="sex" checked="true" value="男">男
+    <input type="radio" name="sex" value="女">女
+    <button id="btn"></button>
+</div>
+<div></div>
+<script>
+    /*
+    * DOM document object model文档对象"模型"
+    * DOM描述节点直接的关系，描述这个页面的节点，形成的图谱
+    * DOM中提供了获取元素的方法 获取元素之间关系  操作元素的方法
+    * 1.获取元素方法
+    * 通过元素的id名字来获取元素（获取的是一个元素）
+    * document.getElementById("");id尽量不要重名
+    * 如果id名重复只能获取第一个元素
+    * 在ie678下id名可以忽略大小写 尽量不要用大小写区分
+    * 如果获取不到元素就是null
+    * 在低版本下name可以取代id name和id一定不要重名
+    * //id前面不能更改必须是document
+    * //通过id直接获取元素（不推荐）
+    * 2.以标签名获取一组元素
+    *  类数组 有索引逐级递增 有length
+    *  获取其中的一个 可以用item(索引) [索引]
+    *  如过获取不到元素，数组里没有东西[]
+    *  context.getElementsByTagName("标签名字");
+    *  //document是上下文，可以更改
+    *  var oUl = document.getElementsByTagName("ul")[0];
+       console.log(oUl);
+       //即便只有一个也无法直接操作，必须取出来
+       oUl.style.border="1px solid red";
+       3.context.getElementsByName("name名字")//类数组
+       //name是分组作用（表单中元素）;表示一组
+       //可以通过checked=true checked=checked
+       4.context.getElementsByClassName();
+       //通过class名字拿到对应的元素
+       //低版本浏览器不兼容
+         var oLis = document.getElementsByClassName("select");
+         console.log(oLis);
+       5. document.documentElement 拿到的是html标签
+       6. document.body
+       拿到可见区域宽高的方法(兼容)
+       7.var height = document.documentElement.clientHeight||document.body.clientHeight;
+       8.var width =document.documentElement.clientWidth||document.body.clientWidth;
+        html5提供的(不兼容，主要用于移动端)
+        获取一个元素(找到了一个 就不继续往下找)
+       9.document.querySelector()
+        获取一堆元素(跟操作css一样) 同jq $(".ol li")
+       10.document.querySelectorAll()
+    * */
+
+    //获取一个元素
+   var oLi =  document.querySelectorAll("#tab+div");
+    console.log(oLi);
+
+
+
+
+    /* var oInput = document.getElementsByName("sex");
+     btn.onclick = function () {
+     //先获得所有input元素
+     var str = ""
+     oInput[0].checked?str="男":str="女";
+     console.log(str);
+     /!* for(var i = 0; i<oInput.length;i++){
+     if(oInput[i].checked){
+     console.log(oInput[i].value);
+     }
+     }*!///点击每个按钮弹出对应的索引值
+
+     }
+
+
+     console.log(oInput);
+     */
+    var height = document.documentElement.clientHeight||document.body.clientHeight;
+    alert(height)
+</script>
+</body>
+</html>

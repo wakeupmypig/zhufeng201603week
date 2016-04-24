@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * for in 循环 for in是遍历对象的
+    * 用法for(属性名(变量) in 对象){
+
+          }
+    *
+    *
+    *
+    * */
+
+    var obj = {};
+    obj.name = "葛庆威";
+    obj.age = 30;
+    obj["0"] = "eat";
+    obj.drink = "可乐";
+    
+    /*console.log(obj.name);
+    console.log(obj.age);
+    console.log(obj["0"]);
+    */
+    //key是我们的变量名  我们用这个变量名默认的去匹配对象里的变量名
+    //遍历的属性问题 先从小到大遍历我们数字类型的属性名 ，再把其余的依次输出
+    console.log(obj);
+    //有多少组属性名和属性值 就遍历多少次
+    var num = 0;
+    for(var key in obj){
+        num+=1;
+        var k = key;//属性名
+        var v = obj[key];//属性值
+        console.log(k);
+        console.log(v);
+        //obj.key//相当于给obj添加一个属性叫key 还不能.0
+    }
+    console.log(num);
+
+
+
+</script>
+</body>
+</html>

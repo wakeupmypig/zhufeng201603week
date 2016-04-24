@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 函数的形参
+    * 买了一个锅 他放水和米 就出米饭 水和面就是馒头
+    * 在函数定义的时候不知道原材料要放入什么，只有函数执行的时候才能确定我们要放入什么（形参 无法预设的）
+    *
+    * */
+    function sum(a,b){//要投入的东西
+        var total = 0;
+        total= a + b;//预设两个变量NaN 当我们有没穿的时候做+法操作就是NaN
+        console.log(total);
+    }
+    console.log(total);//由于闭包机制导致的total被私有化外界无法拿到
+    sum(1,2);
+    var a ;//当变量没有赋值的时候就是undefined；
+   // console.log(a);
+
+
+</script>
+</body>
+</html>

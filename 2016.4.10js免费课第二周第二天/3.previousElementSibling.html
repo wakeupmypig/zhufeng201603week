@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <ul id="div1" class="div1">
+        <li></li>
+
+        <div id="div2"></div>
+        <div></div>
+        <div></div>
+    </ul>
+</div>
+<script>
+    //previousElementSibling 低版本浏览器不兼容
+    //想获得哥哥元素节点
+    /**
+     *
+     * @param ele 当前哪个元素的哥哥节点
+     * @returns {*|Node} 返回的是哥哥节点
+     */
+    /*function prev(ele){
+        //先获取上一级 看看是什么
+        var p = ele.previousSibling;
+        //当不是标签的时候接着向上找 而且不能不能是null（如果是null就表示没有哥哥 直接返回null）
+        for(;p&& p.nodeType!=1;){
+            p=p.previousSibling;
+        }
+       /!* while (p&& p.nodeType!=1){
+            //不等于1的时候就不是标签 p不能是null
+            //再找他的哥哥p.previousSibling
+
+            //p到头了就是null 找到了就是哥哥那个元素
+        }*!/
+        return p;
+    }*/
+
+    function prev(ele){
+        var p = ele.previousSibling;
+        while (p&& p.nodeType!=1){
+           p= p.previousSibling;
+        }
+        //如果上一级就是null  那就不用循环 因为到头了
+        return p;//没有哥哥返回null
+    }
+    var oDiv2 = document.getElementById("div2");
+    console.log(prev(oDiv2));
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="div1" class="div1">
+    <li></li>
+    <li></li>
+    <span></span><div id="div2"></div>
+    <div></div>
+    <div></div>
+</ul>
+<script>
+    /*
+    * 获取所有哥哥元素标签 []类型
+    *
+    *
+    * */
+    /**
+     *
+     * @param ele 当前元素
+     * @returns {Array} 获取当前元素的所有哥哥元素
+     */
+    /*function prevAll(ele){
+        var arr = [];
+        //先拿一次 看看是不是null
+        var p = ele.previousSibling;
+        //一级一级往上找 知道null为止
+        while (p){
+            //如果是标签
+            if(p.nodeType==1){
+                //把找到的放到数组里
+                arr.unshift(p);
+            }
+            //使劲往上找 ，到null停止
+            p = p.previousSibling;
+        }
+        return arr;
+    }*/
+
+    function prevAll(ele){
+        var arr = [];
+        var p = ele.previousSibling;
+        //找到null为止
+        while (p){
+            if(p.nodeType==1){
+                arr.unshift(p)
+            }
+            p = p.previousSibling;
+        }
+        return arr;
+    }
+
+    var oDiv2 = document.querySelector("#div2");
+    console.log( prevAll(oDiv2));
+
+
+
+    //下一个 下面所有的 所有兄弟(刨除自己的) 上一个+下一个
+
+
+
+</script>
+</body>
+</html>

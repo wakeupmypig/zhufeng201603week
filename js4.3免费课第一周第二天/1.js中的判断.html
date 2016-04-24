@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * js中的三种判断
+    * 1.if else if else（它可以取代js中的一切判断）
+    * 2.三元表达式
+    *   可以将简单的if else / if改写成我们三元表达式
+    * 3.switch case
+    *   作用：如果一个值有多个状态，那么我们就可以用我们的switch case
+    *   break 关键字
+    * */
+    //用法
+    /*if(条件1成立){
+        条件1成立的时候执行的代码
+    }else if(条件2成立的时候){
+        条件2成立的时候执行的代码
+    }...
+    else{
+        以上条件都不成立
+    }*/
+    var num = 10;
+    //&&条件两边都成立，才能返回true
+    //||条件左右两边有一边成立，就返回我们的true
+    //if里装的都是我们判断条件 都会转成boolean类型
+
+    //除了那五个0 NaN null undefined ''都是假的其他的都是真的
+    //if里面可以有> < >= <= != || && ...
+//    []==![];
+    //if条件里如果是判断是否相等是==  ===
+    /*if(![]){
+        console.log('是真的');
+    }else{
+        console.log('是假的');
+    }*/
+    //?问你一下是否是真的 ：分割条件如果条件成立走左边的，不成里就是右边的
+    //void 0相当于什么都不做 占了个坑
+    !!undefined?console.log("是真的"):void 0;
+
+
+    ![]?console.log('是真的'):console.log('是假的');
+
+    NaN?console.log('是真的'):console.log('是假的');
+
+    /*if(num>0||num<=0){
+        console.log("num这个数是正数");
+    }else if(num<0){
+        console.log("num这个数是负数");
+    }else{
+        console.log("以上都不满足");
+    }*/
+
+    var num = 10;
+    //如果一个if 满足了 那么后面的所有判断都成立那么也都失效
+    if(num>0){
+        console.log('num>0');
+    }else if(num>5){
+        console.log('num>0');
+    }else{
+        console.log('小于0');
+    }
+
+    var day = 1;
+    //用法
+    switch (day){
+        case '1':
+            console.log("今天是星期1");
+          //  break; 如果不加break 代码就会继续往下执行，当碰到break以后代码停止执行,要用break手动终止
+        case 2:
+            console.log("今天是星期2");
+            break;
+        case 3:
+            console.log("今天是星期3");
+            break;
+        case 4:
+            console.log("今天是星期4");
+            break;
+        default:
+            console.log("以上都不满足");
+            break;
+    }
+    //switch case 是严格比较，如果数据类型不相等那就不走那一个 '==='
+    /*switch (我们要判断的值){
+        case 成立条件:
+                成立后执行的代码
+            break;
+        case 成立条件2:
+            成立后执行的代码
+            break;
+        default:
+            都不满足上面的条件
+    }*/
+</script>
+</body>
+</html>

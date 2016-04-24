@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div" a="ddd">123</div>
+<p id="p1">123123</p>
+<script>
+    //操作元素的方法
+    //增 创建元素
+    //1.document.createElement("标签名")
+    //context.appendChild("元素") 作用：把当前元素增加到父级元素内部的末尾
+    var oDiv = document.createElement("div");
+    oDiv.id="div1";
+    oDiv.style.width="100px";
+    oDiv.style.height="100px";
+    oDiv.style.background="red";
+    document.body.appendChild(oDiv);
+    //parentNode.insertBefore(new,old);
+    //用父亲调用 把新的插到旧的前面（移动了以前的元素）
+    var oP = document.getElementById("p1");
+    oP.parentNode.insertBefore(oDiv,oP);
+    //parentNode.replaceChild(new,old);
+    //父亲调用 用新的元素把老的替换掉
+    var oA = document.createElement("a");
+    oA.innerHTML="123123";
+    oA.href="http://www.zhufengpeixun.cn"
+    document.body.appendChild(oA);
+    oA.parentNode.replaceChild(oA,oDiv);
+
+
+    //删除 parentNode.removeChild("");
+    //oA.parentNode.removeChild(oA);
+    //oDiv.parentNode.removeChild(oDiv);
+
+    //克隆节点 cloneNode()/cloneNode(true) 加上true全部克隆
+    var oA1 = oA.cloneNode(true);
+    document.body.appendChild(oA1);
+
+    //操作节点的方法
+    /*1..createElement()
+    2..appendChild()
+    3..insertBefore()
+    4..replaceChild();
+    5..removeChild();
+    6..cloneNode()*/
+
+
+    //操作属性（元素）
+    //.[]自定义属性区别.[]不会再标签内显示 setAttribute在标签内显示
+   // setAttribute() 设置属性 setAttribute("属性名","值")
+    //设置完后会在标签内显示
+    div.setAttribute("c","cc");
+    //不要操作class div.setAttribute("class","a");低版本浏览器不认
+    //getAttribute("属性名") 获取属性 可以获取html已经设置好的
+    //用. []设置的属性不能通过getAttribute来获取
+    alert(div.getAttribute("a"));
+    //removeAttribute 删除属性
+    div.removeAttribute("c");
+
+</script>
+</body>
+</html>

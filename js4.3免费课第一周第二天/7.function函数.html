@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+<body>
+<script>
+    /*
+    * 什么是函数 一个方法 一个功能就是我们的函数
+    * 函数是引用数据类型的操作的是地址 是空间
+    * 相同功能的封装到一起（封装）
+    * 如何声明一个函数 function来声明一个函数 function "函数名"(){}
+    * {里面装的是要做的事情} 函数体
+    *
+    * js代码执行也是由上到下执行，在全局作用域下
+    * 1.函数声明是 把{}里的内容以字符串的形式存到我们的内存地址里
+    * 2.当我们执行计划的时候把内存地址里的字符串，拿出来当作js代码执行
+    * 3.执行的时候形成了私有的空间，私用作用域
+    * 4.外面代码无法访问里面的代码。不受外界干扰
+    *
+    *
+    * 当函数执行的时候形成了私用作用域，外界无法访问，也无法修改。把这个机制叫做闭包（私有化），他不是一种形式(没有固定的写法)  是一种机制
+    *
+    * */
+    //预计计划
+    function sum(){
+        var total = 0;
+        total = 1+1;
+        console.log(total);
+    }
+    function sum2(){
+        var total = 0;
+        total = 2+2;
+        console.log(total);
+    }
+
+    console.log(total); //输出的函数本身
+    sum();//方法执行 /执行计划 将里面的代码执行
+    //console.log(total);//total 第一是个变量，外界无法访问（私有变量），并且无法修改
+    sum();
+    //当多次执行 两个私有空间毫无关系
+    //当声明一个函数没有任何意义
+
+
+
+
+
+
+    /*var sum = 0;
+    sum=1+1;
+    console.log(sum);
+
+    var sum = 0;
+    sum=1+1;
+    console.log(sum);*/
+
+
+</script>
+</body>
+</html>

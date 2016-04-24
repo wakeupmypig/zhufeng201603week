@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 什么是数字 正数 负数 0 小数 一个特殊的数字类型 NaN not a number
+    * NaN not a number 虽然不是数 但是是number类型的
+    * NaN == NaN (false) 永远不相等
+    * //=是赋值 ，==是比较 比较左边和右边的是否相等
+    * 数字里的方法
+    * isNaN(); 天生就有的 isNaN("要判断的内容") 是 不是一个数
+    *   判断是不是有效数字
+    *   1)先把我们的内容转换成数字如果不成功就是NaN
+    *   2)判断是不是NaN，如果是NaN那就是true
+    * 不是NaN就成立
+    * Number(); 强制转换 用法呢 Number("要判断的内容");如果能转换成数字的我们就把数字返回，如果转换不了就是NaN
+    *
+    * 非强制转换
+    * parseInt(); 将要判断的内容放到括号内
+    * 调用parseInt你要判断的值从左到右开始查找，当查找不是一个有效数字的时候，将前面的有效数字返回，如果第一个就不是有效数字那么就返回NaN
+    *
+    *
+    * parseFloat 同parseInt，他识别一个小数点，多取一个小数点
+    *
+    *
+    *
+    *
+    * */
+    var name = '12ax';
+    //isNaN(name); //是NaN(不是有效数字)是true 是有效数字的话就是false
+    //console.log(isNaN(name));
+    //强制类型转换 当我放进去一个数，我们要先看看能不能变成一个数字，如果能变成那就是一个有效数字
+    //强制类型转换 Number()
+    console.log(Number(name));
+    console.log(isNaN(NaN));
+
+
+
+    var num = parseInt("p12px");
+    if(num == 12){
+        console.log('等于12');
+    }else if(num ==NaN){
+        console.log('等于NaN');
+    }else{
+        console.log('都不满足');
+    }
+
+
+
+   // console.log(parseInt("12px"));
+    console.log(parseInt("1p2px"));
+    console.log(parseInt("123.3"));
+    
+    
+    console.log(parseFloat('123.3.3.3'));
+
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>
+
+
+<script>
+    /*var num = "1.0.0.0";
+    Number(num);//当不能识别时候都是我们的NaN
+    console.log(Number(num));
+    //Number方法=》正数 负数 0 小数 都是我们的数字类型包括他们加上双引号 空字符串是0  true是 1  false 0
+    //Number('1.3');
+    console.log(Number(''));
+    console.log(Number(true));
+    //console.log(isNaN(1.3));*/
+
+</script>

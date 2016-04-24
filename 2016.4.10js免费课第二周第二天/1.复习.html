@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div2"><div id="div1"><div></div></div></div>
+<!--childNodes不包括孙子节点 child孩子-->
+<script>
+    /*
+    * 获取元素的方法
+    * document.getElementById(); null id唯一
+    * context.getElementsByTagName("标签名"); 类数组 [];
+    * context.getElementsByClassName("类名");
+    * context.getElementsByName("name名字"); 不要和id重名
+    *
+    * document.documentElement 获取html标签
+    * document.body;
+    *
+    * document.documentElement.clientHeight||document.body.clientHeight
+    * document.documentElement.clientWidth||document.body.clientWidth
+    *
+    * h5的方法
+    * context.querySelector
+    * context.querySelectorAll
+    *
+    * 节点和节点之间的关系“属性”
+    * 1.childNodes 文本 注释 元素... （获取所有节点）
+    * 2.children 所有标签节点
+    * 3.parentNode 获取父亲节点
+    * 4.previousSibling 获取哥哥节点（文本 注释 元素.）
+    * 在html中获取不到的最差的也是null 没见过undefined
+    * 如果上一个没有返回null
+    * 5.previousElementSibling 低版本不兼容
+    * 6.nextSibling 获取弟弟节点（文本 注释 元素.）
+    * 7.nextElementSibling
+    * 8.firstChild
+    * 9.lastChild
+    * 10.firstElementChild
+    * 11.lastElementChild
+    * 操作元素的方法
+    * createElement()创建元素
+    * 父亲.appendChild("元素");扔到父亲里面的末尾
+    * 父亲.insertBefore(new,old);用新的插到旧的前面
+    * 父亲.replaceChild(new,old);用新的替换旧的
+    * 父亲.removeChild("");用父亲删除子节点
+    * cloneNode(true)克隆节点  true代表连内容一起拷贝
+    *
+    * 设置属性的方法
+    * 元素.setAttribute("属性名","属性值") 设置标签内可见的属性
+    * 元素.getAttribute("属性名");
+    * 元素.removeAttribute("属性名")
+    *
+    * .[] 给对象设置自定义属性
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+    console.log(div1.previousSibling)
+    console.log(div2.childNodes);
+    div1.aa="bb";
+    console.log(div1.bb);//对象拿不到是undefined
+    console.log(div1.getAttribute("aa"));
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            -webkit-appearance: none;
+            border: 1px solid red;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+<input type="text">
+<script>
+    
+    
+    
+    /*对象  对象是一个泛指（用来描述一个物体）
+    * 如何创建一个对象
+    * 对象的组成：是由属性名：(中间分割用:)属性值每一组之间用,分割
+    * 多组key value
+    * */
+    //第一种：字面量方式创建
+    var person = {
+        name:"陈丽丽",
+        age:18,
+        height:'180cm',
+        0:'吃饭'
+    }
+    //第二种: 创建实例 用new关键字
+    var obj = new Object();
+
+
+    //操作对象的增删改查
+    //增加属性
+    //两种增加属性的方式. / []
+    person.boyFriend = 'handsome';
+    //alert(person); //因为alert有自动.toString();
+    var girlFriend="width";
+    person[girlFriend] = 'beautiful';
+    console.log(person);
+    //获得属性
+    console.log(person.boyFriend);
+    console.log(person["boyFriend"]);
+    //修改 没有属性的时候就是增加，如果有就是修改
+    person.boyFriend='beautiful';
+    console.log(person);
+
+
+    //对象的删除
+    //一种叫真删除  一种假删除
+    person.boyFriend=null;
+
+    //真删除
+
+    console.log(person);
+    delete  person.boyFriend; //删除一个属性值和属性值
+    console.log(person);
+
+    person["0"];
+    //我们不能通过.方式获取数字型的属性名字
+    //person.0;
+    //如果没有定义过的属性名 取不到就是undefined
+    console.log(person.eat);
+
+    //null和undefined
+    //一个是预设好只是没东西，另一个根本就不存在
+
+
+    //什么是对象 ，什么是类  什么是实例
+    //在js中万物皆对象，类是对象中一个具体细分，是类中的一个具体的东西
+    //在自然界中万物皆对象，人类，动物类，植物类都是自然界中的具体细分，我们每一个人就是具体的东西
+
+    //Object Array RegExp.....类
+    //  引用数据类型
+    // 对象数据类型 {} [] //都叫实例 类衍生出来的
+
+
+
+    []==![];
+    //思路 先算取反 不再那五个里面的都是真的取反false
+    []==false;
+    //对象和boolean比较 Number([].toString())==Number(false)
+    ({})=='[object Object]';
+
+//    对象只要和其他类型 就先toString 如果是数字/ number方法boolean
+    //先将对象转化成字符串
+
+
+
+
+
+</script>
+</body>
+</html>

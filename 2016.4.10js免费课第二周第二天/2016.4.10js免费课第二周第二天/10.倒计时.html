@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    /*
+    * 倒计时:算一个时间距离另一个时间还有多久
+    * */
+
+    //要跟 1970年1月1日凌晨
+
+    //target.getTime();//拿到毫秒数
+    //相差的所有时间都在这里
+
+
+    //1秒 = 1000ms
+    //1分钟 = 60秒
+    //1小时 = 60分钟
+    //24小时 = 1天
+    //简单的
+    /*allms/1000=一共有多少秒
+    allms/1000/60 = 一共有多少分钟
+    allms/1000/60/60=一共有多少小时
+    allms/1000/60/60/24=一共有多少天
+
+    不满24小时的都是剩余的小时，因为无法组成一天
+    不满1小时的都是剩余的分钟
+    不满一分钟的就是我们剩余的秒*/
+    //取模和除的区别
+
+    function getTime(){
+        var now = new Date();
+        //距离第一天正式课下课的时间
+        //日期的- 在ie6不认 ie6下要是有/
+        var target = new Date("2016/4/12 18:00:00");
+        var allms = target.getTime()-now.getTime();
+        var day = Math.floor(allms/1000/60/60/24);//余下多少天
+        var h =  Math.floor(allms/1000/60/60%24);// 不满一天就是剩下的小时
+        var m = Math.floor(allms/1000/60%60);//不满一小时的就是剩余的分钟
+        var s = Math.floor(allms/1000%60);
+        div1.innerHTML=day+"天"+h+"小时"+m+"分钟"+s+"秒";
+    };
+    getTime();
+    var timer = setTimeout(function () {
+        clearTimeout(timer);
+        getTime();//隔一秒先调用一次
+        setTimeout(arguments.callee,1000);
+    },1000);
+    
+    
+    
+   /*
+    var day = Math.floor(allms/1000/60/60/24);
+    //把天所占的毫秒数减掉
+
+    var h =  Math.floor((allms-(day*24*60*60*1000))/1000/60/60);
+    var m = Math.floor((allms-(day*24*60*60*1000)-(h*60*60*1000))/1000/60);
+    var s = Math.floor((allms-(day*24*60*60*1000)-(h*60*60*1000)-(m*60*1000))/1000);
+
+    div1.innerHTML=day+"天"+h+"小时"+m+"分钟"+s+"秒";*/
+
+
+
+
+  //  console.log(day,h,m,s);
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
