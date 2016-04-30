@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //setTimeout  setInterval
+    /*function move(){
+        alert(1);
+        return function () {
+            alert(1000)
+        }
+    }
+    setTimeout(move(),1000);*/
+    //我们加小括号的是方法运行
+    setTimeout("alert(100)",2000);
+    //我们以前说 setTimeout第一个参数是方法等待多少毫秒以后让这个方法执行
+    //如果第一个参数是字符串new Function把字符串放到了函数里
+    /*var i = 0;
+    var timer = setInterval(function () {
+        i++;
+        if(i==5){
+            clearTimeout(timer);
+        }
+        console.log(i);
+    },1000);*/
+    var i = 0;
+    var timer = setTimeout(function () {
+        clearTimeout(timer);
+        i++;
+        if(i==5){
+            return;//这里是return 如果是clearTimeout依然清除的null，而不是阻止后面的定时器运行
+        }
+        console.log(i);
+        timer=setTimeout(arguments.callee,1000);
+    },1000);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

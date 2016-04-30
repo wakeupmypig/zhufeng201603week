@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #div1{
+        width: 250px;
+        height: 250px;
+        border: 10px;
+        background: deeppink;
+        padding: 50px;
+        overflow-y: scroll;
+
+    }
+</style>
+<body>
+<div id="div1">
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+    好好学习天天向上
+</div>
+<script src="DOM.js"></script>
+<script>
+    //scroll scrollTop
+    //如果设置scrollTop的值为负值的时候 依然是0
+    //0是我们的最小值
+    //我们页面所有屏的高度scrollHeight
+    //页面的高度= （到最下面）滚过去的距离+ 当前页面的高度
+    //获得的是最大scrollTop的值
+    var max = DOM.win("scrollHeight")-DOM.win("clientHeight");
+    //超过最大值得scrollTop 也等于我们的最大值
+    //让我们盒子的滚动条 到最底部
+    div1.scrollTop = (div1.scrollHeight-div1.clientHeight);
+</script>
+</body>
+</html>

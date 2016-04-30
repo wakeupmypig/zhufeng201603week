@@ -38,6 +38,27 @@ var DOM = (function () { //这个作用域不销毁
             }
             reg=/^-?\d+(\.\d+)?(px|pt|em|rem|%)?$/;
             return reg.test(val)?parseFloat(val):val;
+        },
+        offset: function (ele) {
+            var top = ele.offsetTop;
+            var left = ele.offsetLeft;
+            var p = ele.offsetParent;
+            while (p){
+                if(navigator.userAgent.indexOf("MSIE 8.0")===-1){
+                    top+= p.clientTop;
+                    left+= p.clientLeft;
+                }
+                top+= p.offsetTop;
+                left+= p.offsetLeft;
+                p = p.offsetParent;
+            }
+            return{
+                top:top,
+                left:left
+            }
         }
     }
 })();
+
+
+

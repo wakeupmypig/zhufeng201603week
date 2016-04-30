@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    html,body{
+        background:-webkit-linear-gradient(red,orange,yellow,green,blue,purple)
+    }
+    #goTop{
+        /*position:fixed不兼容*/
+        position: fixed;
+        width: 100px;
+        height: 100px;
+        background: purple;
+        line-height: 100px;
+        text-align: center;
+        bottom: 80px;
+        right: 30px;
+        color: #fff;
+    }
+</style>
+
+<body style="height: 5000px;">
+<a id="goTop" href="javascript:;">
+    滚到顶部
+</a>
+<script src="DOM.js"></script>
+<script>
+    var goTop = document.getElementById("goTop");
+    //思路：回到顶部
+    //1.点击的时候先拿到当前浏览器的scrollTop值
+    //2.回到顶部的所有时间 每一步走多远
+    //3.每次运动的时候获取当前的scrollTop值 减去步长
+    //4.在赋予给scrollTop
+    //5.当scrollTop=0的时候清除定时器（说明已经到达顶部）
+    goTop.onclick = function () {
+        var distance = DOM.win("scrollTop");
+        var allMs = 500;
+        //算出每一毫秒走多远
+        var perDis = distance/allMs;
+        //定时器每隔10毫秒走一次
+        var interval = 10;
+        //没步走多长；
+        var step = perDis*interval;
+        var timer = setInterval(function () {
+            console.log(1);
+            var curTop = DOM.win("scrollTop");
+            var top = curTop-step;
+            if(curTop==0){
+                clearInterval(timer);
+            }
+            DOM.win("scrollTop",top);
+        },interval);//每interval秒定时器走一次
+
+        alert(step);//先拿到距离顶部的距离
+
+
+
+
+
+    }
+    //e.preventDefault();//组织浏览器的默认行为
+
+
+    //1.直接设置scrollTop值为0
+    //2.添加锚点 hash值#xxxx(虽然没有跳页面但是路径更改了)
+
+</script>
+
+
+
+
+</body>
+</html>

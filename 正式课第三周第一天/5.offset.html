@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #outer{
+        width: 300px;
+        height: 300px;
+        padding: 50px;
+        background: red;
+        border: 10px solid yellow;
+        margin: 200px;
+    }
+    #inner{
+        width: 200px;
+        height: 200px;
+        padding: 30px;
+        background: green;
+        border: 10px solid yellow;
+    }
+    #center{
+        width: 100px;
+        height: 100px;
+        background: blue;
+        border: 10px solid yellow;
+    }
+</style>
+<div id="outer">
+    <div id="inner">
+        <div id="center"></div>
+    </div>
+</div>
+<script>
+    var outer = document.getElementById("outer");
+    var inner = document.getElementById("inner");
+    var center = document.getElementById("center");
+    
+    /*console.log(center.parentNode);
+    console.log(inner.parentNode);
+    console.log(outer.parentNode);*/
+
+    console.log(document.body.parentNode.parentNode.parentNode);
+    //null - > document - >html - >body
+    
+    //offsetParent 参照物
+    console.log(center.offsetParent);
+    console.log(inner.offsetParent);
+    console.log(outer.offsetParent);
+    // offsetLeft offsetTop
+    //center inner outer 在同一平面内，他们的父亲参照物都相同
+
+    //position:absolute /relative / fixed /static/ inherit
+    //outer.style.position= 'fixed';
+    inner.style.position= 'fixed';
+    outer.style.position= 'relative';
+    //设置position:fixed以后 和body平级 body的参照物没有 所以设置fixed参照物也为null
+    console.log("1000000",inner.offsetLeft);
+    console.log(inner.offsetParent);
+    console.log(outer.offsetParent);
+    //2.offsetLeft offsetTop
+    //内部的外边框到offsetParent 内边框
+    console.log(inner.offsetLeft);
+
+    //不知道上级是否定位
+    //还要记住body到html的距离（我们css会清掉）
+    console.log(document.body.offsetParent);
+
+    //我们说如果每一级都设置了relative
+//    center -> body
+    // 1.center.offsetLeft
+    // 2.inner.clientLeft +inner.offsetLeft
+    // 3.outer.clientLeft +outer.offsetLeft
+    //如果上一级直接是null
+    console.log(offset(inner));
+    function offset(ele){
+        var left =ele.offsetLeft;//拿取当前元素的偏移量左边
+        var top =ele.offsetTop;//拿取当前元素的偏移量上边
+        var p = ele.offsetParent; //先找一下上一级
+        //目的是找到结束为止null
+        while (p){
+            //真实的ie8不用加clientLeft和clientTop
+//            MSIE 8.0
+            if(navigator.userAgent.indexOf("MSIE 8.0")==-1){
+                //浏览器内核里没有ie8的标识
+                left+= p.clientLeft;
+                top+= p.clientTop;
+            }
+            left+= p.offsetLeft;
+            top+= p.offsetTop;
+            p =  p.offsetParent;
+        }
+        var obj = {top:top,left:left};
+        return obj;
+    }
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
