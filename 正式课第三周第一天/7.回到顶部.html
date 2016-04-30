@@ -24,6 +24,7 @@
         bottom: 80px;
         right: 30px;
         color: #fff;
+        display: none;
     }
 </style>
 
@@ -40,7 +41,13 @@
     //3.每次运动的时候获取当前的scrollTop值 减去步长
     //4.在赋予给scrollTop
     //5.当scrollTop=0的时候清除定时器（说明已经到达顶部）
+
+
+    //显示的问题1.当浏览器滚动了一屏以后让goTop的按钮显示
+    //1.首先拿到当前浏览的scrollTop值如果大于clientHeight的时候让她显示，否则隐藏
     goTop.onclick = function () {
+        window.onscroll = null;//只要一点击就让onscroll事件清空
+        this.style.display='none';
         var distance = DOM.win("scrollTop");
         var allMs = 500;
         //算出每一毫秒走多远
@@ -50,28 +57,29 @@
         //没步走多长；
         var step = perDis*interval;
         var timer = setInterval(function () {
-            console.log(1);
             var curTop = DOM.win("scrollTop");
             var top = curTop-step;
             if(curTop==0){
                 clearInterval(timer);
+                window.onscroll = scroll;//当已经回到了顶部，那么就让onscroll事件在赋予上值
             }
             DOM.win("scrollTop",top);
         },interval);//每interval秒定时器走一次
-
-        alert(step);//先拿到距离顶部的距离
-
-
-
-
-
-    }
+       // alert(step);//先拿到距离顶部的距离
+    };
     //e.preventDefault();//组织浏览器的默认行为
 
 
     //1.直接设置scrollTop值为0
     //2.添加锚点 hash值#xxxx(虽然没有跳页面但是路径更改了)
-
+    //监听浏览器滚动事件
+    function scroll() {
+        var t = DOM.win('scrollTop'); //获取当前浏览器卷过的高度
+        var h = DOM.win('clientHeight');//获取当前屏幕的高度
+        //如果卷过去的高度大于屏幕的说明超过一屏
+        goTop.style.display=(t-h>0?'block':'none');
+    }
+    window.onscroll = scroll;
 </script>
 
 
