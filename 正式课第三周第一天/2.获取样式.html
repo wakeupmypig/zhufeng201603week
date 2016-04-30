@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #div1{
+        width: 100px;
+        height: 100px;
+        background: red;
+        border: 1px solid yellow;
+    }
+    #div1:after{
+        content: "123";
+    }
+</style>
+<body>
+<div id="div1"></div>
+<script>
+    //元素.style.属性名
+    var oDiv = document.getElementById('div1');
+    console.log(oDiv.style.width);
+    //元素.style的方法直能获取行内样式 样式表中的内容无法获取
+
+    //我们标准浏览器下提供一个方法 getComputedStyle
+    //console.log(window.getComputedStyle(oDiv,null));
+    //这个属性 是window的属性（方法）而且必须要传递参数
+    //伪类 :after :before
+    //console.log(window.getComputedStyle(oDiv,null)["background"]);
+    //获取伪类元素
+    //1）getComputedStyle 得到计算后的样式，无论你写不写，"只要让浏览器渲染了" ，那就可以获得任意属性
+    //不是你必须写在样式表中的，获得不是样式表里的，而是渲染出来的；
+
+    //2)元素.currentStyle[属性名]；
+    //console.log(div1.currentStyle["margin"]);
+    // marginTop margin
+    //getComputedStyle和currentStyle拿到的东西不一定一样
+    /**
+     *
+     * @param ele 要获取的某个元素的什么值
+     * @param attr 要获取的属性
+     */
+    function getCss(ele,attr){
+        //try catch 没有作用域 {} 不是作用域
+        var val = '';
+        try{
+            val =  getComputedStyle(ele,null)[attr];
+        }catch (e){
+            val =  ele.currentStyle[attr];
+        }
+        return val
+    }
+    alert(getCss(div1,"width"));
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
