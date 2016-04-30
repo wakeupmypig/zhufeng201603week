@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .m {
+        background: yellow;
+    }
+
+    #div1 {
+        width: 200px;
+        height: 200px;
+        padding: 30px;
+        border: 10px solid black;
+    / / background: red;
+        margin: 100px;
+        overflow:hidden
+    }
+</style>
+<div id="div1" class="a b c d" data-zf="zhufengpeixun" draggable="true">
+    麦当劳砍人事件病逝前桌底留情书Selina签字离婚黎明演唱会被叫停猎杀大熊猫案宣判林志玲认三段恋情岳云鹏用水杯泡面车展礼仪颜值吸睛成都女子澳洲遇害孙红雷助阵车展普京被放鸽子孕妇产下胎中胎3岁男孩宝马漂移杜淳上演湿身诱惑英国女模特摔跤馆
+    麦当劳砍人事件病逝前桌底留情书Selina签字离婚黎明演唱会被叫停猎杀大熊猫案宣判林志玲认三段恋情岳云鹏用水杯泡面车展礼仪颜值吸睛成都女子澳洲遇害孙红雷助阵车展普京被放鸽子孕妇产下胎中胎3岁男孩宝马漂移杜淳上演湿身诱惑英国女模特摔跤馆
+</div>
+<script>
+    /*//HTMLDivElement
+    var oDiv = document.getElementById('div1');
+    console.log(oDiv.__proto__);
+    console.log(oDiv.classList);//获得的是 获取的类数组（样式的集合）
+    //h5的方法
+    //不兼容低版本浏览器
+
+    oDiv.classList.add("m");//给我们的div增加m样式
+    oDiv.classList.remove("m");//给我们的div移除m样式
+    console.log(oDiv.classList.__proto__);
+    oDiv.classList.toggle("e");//toggle切换 如果没有就加上，如果有的话就移除
+    console.log(oDiv.classList);
+    setTimeout(function () {
+        oDiv.classList.toggle("e");
+        console.log(oDiv.classList);
+    }, 5000);
+    //H5中操作样式的方法 classList add remove toggle;
+    //css padding  border  margin  content
+    oDiv.contentEditable = false;
+    //让div变成可编辑状态  表情回复
+
+
+    console.log(oDiv.dataset.zf);
+    console.log(oDiv.getAttribute("data-zf"));//不用去掉-*/
+    //data-zf = "zhufengpeixun"
+    //拿到html中设置的以data开头的自定义属性
+    //方法不兼容
+    //draggable="true" 让这个盒子变成可拖动的(拖动的不是盒子本身)
+
+    //分为三大类 client offset scroll
+    //1.client系列:clientWidth clientHeight clientLeft clientTop;
+    //2.offset系列:offsetWidth offsetHeight offsetLeft offsetTop; offsetParent
+    //3.scroll系列 scrollTop scrollLeft scrollHeight scrollWidth
+    //一共十三个
+    var oDiv = document.getElementById('div1');
+    //1.clientHeight/clientWidth
+    console.log(oDiv.clientHeight);//260
+    //clientHeight = 内容的高度+上下padding
+    //clientWidth = 内容的宽度+左右padding
+    //没有border，clientHeight不包括溢出的部分
+    //当我们不给盒子高度的时候 内容会自动撑开 那获得的就是真实的高度+padding
+    //2.offset系列 offsetHeight/offsetWidth;
+    console.log(oDiv.offsetHeight);
+    //280  clientHeight+上下border
+    //**offset是加border的
+    //说明client一样溢出不进行计算
+    console.log(document.documentElement)
+   // alert(document.documentElement.clientHeight);//在低版本浏览器下拿不到高度
+  //  alert(document.body.clientHeight);//在低版本浏览可以拿body的高度
+
+    //在高版本浏览器下document.documentElement.clientHeight 和document.body.clientHeight不一样 body有多高document.body.clientHeight就有多高
+    //document.documentElement.clientHeight||document.body.clientHeight;
+    //alert(document.documentElement.offsetHeight||document.body.offsetHeight); //offsetHeight 在高版本浏览器下获得的是内容真实的高度
+    //==>document.documentElement.clientHeight||document.body.clientHeight;是获得可见屏幕的宽高
+    //||如果前面是false的话走后面，如果两个都是false 。最后就是false
+
+
+    //<!DOCTYPE html>会影响我们的值
+
+
+
+    //3.scroll系列
+    //scrollWidth/scrollHeight;
+    console.log(oDiv.scrollHeight);
+    //如果内容不溢出，和clientHeight一样
+    //如果溢出 上padding+内容的高度 或者左padding+内容的宽度
+    //overflow:hidden在不同浏览器下结果不同
+
+
+    //总结
+    //clientHeight clientWidth 包括padding和width
+    //clientTop clientLeft 上边框和左边框的宽度 clientRight
+    //offsetHeight offsetWidth 包括padding和width和border
+    //都不管是否溢出
+    //scrollHeight scrollWidth 包括padding和width算溢出（我们的真实高度）
+
+    //document.documentElement.clientHeight=10000;
+    //document.body.clientHeight=10000;
+    //都是可读的不可写
+    //clientRight = offsetWidth-clientWidth-clientLeft
+    //console.log(oDiv.clientTop);
+
+
+    //offsetParent: offsetParent找父亲的参照物
+    //offsetTop： 相对于这个参照物的上偏移
+    //offsetLeft：相对这个参照物的左偏移
+
+
+    //scrollTop/scrollLeft
+    //滚动条卷去的高度
+    //document.documentElement.scrollTop 在高版本浏览器不认
+    //document.body.scrollTop 在低版本浏览器认
+
+    //只要和浏览器有关 就必须写两个document.documentElement，document.body
+    //11个只读的属性 scrollTop/scrollLeft2个可读写的
+    /**
+     *
+     * @param attr 要获取的属性 对应的值
+     * @param val  要设置的val值
+     */
+    //必须documentElement和body都写上
+    //instanceof 如果继承的话 判断就会出现问题
+    function win(attr,val){
+        if(Object.prototype.toString.call(val)==="[object Undefined]"){
+            return document.documentElement[attr]||document.body[attr];
+        }
+        document.documentElement[attr]=val;
+        document.body[attr]=val;
+    }
+    window.onresize = function () {//监听窗口的变化 尽量少用
+        console.log(win("clientWidth"));
+    }
+   
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
