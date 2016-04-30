@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #div1{
+        width: 100px;
+        height: 100px;
+        background: red;
+        border: 1px solid yellow;
+        opacity: 0.3;
+        filter:alpha(opacity=88.55);
+
+    }
+    #div1:after{
+        content: "123";
+    }
+</style>
+<body>
+<div id="div1"></div>
+<script>
+    //元素.style.属性名
+    var oDiv = document.getElementById('div1');
+    //去单位
+    /*function getCss(ele,attr){
+        var val = '';
+        var reg = '';
+       /!* try{
+            val =  getComputedStyle(ele,null)[attr];
+        }catch (e){
+            val =  ele.currentStyle[attr];
+        }*!/
+        if("getComputedStyle" in window){
+            val =  getComputedStyle(ele,null)[attr];
+        }else{
+            val =  ele.currentStyle[attr];
+        }
+        //-100.23em;
+        //-? 匹配是否有负号；
+        //\d+(\.\d+)?匹配的小数
+        //(px|em|rem|pt|%)?判断是否有单位
+        reg=/^-?\d+(\.\d+)?(px|em|rem|pt|%)?$/;
+        return reg.test(val)?parseFloat(val):val;
+    }
+    alert(getCss(div1,"opacity"));*/
+    //计算后的样式可以带.5  clientHeight....必须是整数
+
+    //catch 必须等try先走完报错了 再走
+    //判断浏览器内核的方法判断是不是ie 6 7 8
+    console.log(navigator.userAgent);
+    //Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36
+    //Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; GWX:QUALIFIED; MANMJS; rv:11.0) like Gecko
+    //Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; GWX:QUALIFIED; MANMJS)
+    //Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; GWX:QUALIFIED; MANMJS)
+//    (MSIE 8.0|MSIE 7.0| MSIE 6.0) 是不是低版本浏览器
+    console.log(/MSIE (8|7|6)/.test(navigator.userAgent));
+    //三种方法检测是否是低版本
+
+
+
+    //我们得写一个对透明度的处理
+    function getCss(ele,attr){
+        var val = '';
+        var reg = '';
+        if("getComputedStyle" in window){
+            val =  getComputedStyle(ele,null)[attr];
+        }else{
+            //在这里说明是低版本 filter
+            if(attr=="opacity"){ //只对去opacity的时候做兼容处理
+                val =  ele.currentStyle["filter"];//取出filter里面对应的值
+//                alpha(opacity=80)是我们取出来的 =>0.8
+                reg = /^alpha\(opacity=(\d+(\.\d+)?)\)$/;
+                val = reg.test(val)?reg.exec(val)[1]/100:1;
+            }else{
+                val =  ele.currentStyle[attr];
+            }
+        }
+        reg=/^-?\d+(\.\d+)?(px|em|rem|pt|%)?$/;
+        return reg.test(val)?parseFloat(val):val;
+    }
+    alert(getCss(div1,"opacity"));
+</script>
+</body>
+</html>
