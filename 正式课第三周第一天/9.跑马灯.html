@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    #wrap{
+        width: 1000px;
+        margin: 20px auto;
+        height: 80px;
+        line-height: 35px;
+        color: aquamarine;
+        background: black;
+        overflow: hidden;
+        color: white;
+        font-size: 35px;;
+    }
+    #main{
+        white-space: nowrap;
+    }
+    #main div{
+        display: inline-block;
+    }
+</style>
+<div id="wrap">
+    <div id="main">
+        <div id="box">
+            <span style="color: red">对</span>一个元素水平垂直居中，在我们的工作中是会经常遇到的，也是CSS布局中很重要的一部分，本文就来讲讲CSS水平垂直居中的一些方法。
+        </div><div id="box2">
+            <span style="color: red">对</span>一个元素水平垂直居中，在我们的工作中是会经常遇到的，也是CSS布局中很重要的一部分，本文就来讲讲CSS水平垂直居中的一些方法。
+        </div>
+    </div>
+</div>
+<script src="DOM.js"></script>
+<script>
+
+    //无缝滚动有两种方案：
+    //1：可以滚到最大时候 +原来的内容（会导致盒子里的内容越来越多）
+    //2: 滚动main 如果发现wrap.srollLeft 等于第一个盒子的长度，让她瞬间scrollLeft变为0
+    var wrap = document.getElementById("wrap");
+    var box1 = document.getElementById('box');
+    var boxWidth = DOM.getCss(box1,"width")
+    var timer = window.setInterval(function () {
+        //当wrap的scrollLeft 等于第一个盒子的时候让wrap scrollLeft变为0
+        if(boxWidth==wrap.scrollLeft){
+            wrap.scrollLeft=0;
+        }
+        wrap.scrollLeft++;
+    },10);
+    wrap.onmouseover = function () {
+        clearInterval(timer);
+    };
+    wrap.onmouseout = function () {
+        timer = window.setInterval(function () {
+            //当wrap的scrollLeft 等于第一个盒子的时候让wrap scrollLeft变为0
+            if(boxWidth==wrap.scrollLeft){
+                wrap.scrollLeft=0;
+            }
+            wrap.scrollLeft++;
+        },10);
+    }
+    //我们timer代表 我们定时器的序号 清序号和和清timer是一样的
+    //在清除的时候尽量不要清除timer的值 而清timer  因为timer会递增
+    //clearInterval(1)
+
+
+    /*
+     //我们的marquee 标签不能实现无缝滚动
+     //我们先来一个单一的滚动 从左滚到右边
+     //让当前的scrollLeft每次都+1;(改变wrap的scrollLeft)
+     var timer = setInterval(function () {
+     //先拿到一次当前的值
+     var curLeft = wrap.scrollLeft;
+     wrap.scrollLeft++;
+     //加完后在拿一次
+     var next = wrap.scrollLeft;
+     //如果这次加到了最大 就能在加了，我们就清掉定时器
+     if(curLeft == next){
+     clearInterval(timer);
+     }
+     },10);
+    */
+
+    //inline-block导致 盒子之间有距离，导致回到第一个的时候前面没有那段空的距离了，所以把中间的空格去掉
+</script>
+
+
+
+</body>
+</html>
