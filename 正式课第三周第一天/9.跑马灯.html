@@ -42,24 +42,19 @@
     var wrap = document.getElementById("wrap");
     var box1 = document.getElementById('box');
     var boxWidth = DOM.getCss(box1,"width")
-    var timer = window.setInterval(function () {
+    function move() {
         //当wrap的scrollLeft 等于第一个盒子的时候让wrap scrollLeft变为0
         if(boxWidth==wrap.scrollLeft){
             wrap.scrollLeft=0;
         }
         wrap.scrollLeft++;
-    },10);
+    }
+    var timer = window.setInterval(move,10);
     wrap.onmouseover = function () {
         clearInterval(timer);
     };
     wrap.onmouseout = function () {
-        timer = window.setInterval(function () {
-            //当wrap的scrollLeft 等于第一个盒子的时候让wrap scrollLeft变为0
-            if(boxWidth==wrap.scrollLeft){
-                wrap.scrollLeft=0;
-            }
-            wrap.scrollLeft++;
-        },10);
+        timer = window.setInterval(move,10);
     }
     //我们timer代表 我们定时器的序号 清序号和和清timer是一样的
     //在清除的时候尽量不要清除timer的值 而清timer  因为timer会递增

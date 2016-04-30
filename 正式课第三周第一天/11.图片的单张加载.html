@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 236px;height: 179px;border: 1px solid red">
+    <img src="" trueImg = './5.jpg' id="img1" aa="bb">
+</div>
+<script>
+    //单张延迟加载
+    //只有图片路径错误的时候 才会出现丢失的X
+    var img = document.getElementById("img1");
+    var timer = setTimeout(function () {
+        //如果图片路径根本不对 如果把错误的路径赋给了图片就会出x
+        //1.我们要在浏览器中 先创建一个图片把路径赋予给他看他是否能加载
+        var image = new Image;
+        image.src = img.getAttribute("trueImg");
+        //看图片能不能加载,如果不加载成功我们就不把图片的路径赋值
+        image.onload = function () {
+            img.src = image.src;
+            clearTimeout(timer);
+            image = null;
+        };
+       // img.src = img.getAttribute("trueImg");
+    },1000);
+    
+
+
+</script>
+</body>
+</html>

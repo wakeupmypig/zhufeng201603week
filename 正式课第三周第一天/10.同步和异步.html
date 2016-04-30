@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //同步和异步
+    //事件绑定 定时器 ajax 回调函数
+    //什么叫回调函数
+    //把函数当作参数传进到一个方法体内， 当方法体执行完再让我们的这个函数执行（传进去 看里面什么时候让它执行）
+    var i = 0;
+    function A(){
+        //获取姓名
+        console.log("A执行了");
+        var a = arguments[0];
+        setTimeout(function () {
+            console.log(1)
+            i++;
+            //我先让console.log(1)执行
+            a();//调用了第一次但是不输出100
+        },1000);
+    }
+    function B(){
+        //获取内容
+        console.log("B执行了");
+        var a = arguments[0];
+        setTimeout(function () {
+            i++;
+            console.log(2);
+            a();//掉了第二次 应该输出100了
+        },111);
+    }
+    function C(){
+        if(i==2){
+            console.log(100);
+        }
+        //调用两次C 才输出100
+    }
+    A(C);
+    B(C);
+    //我们可以用计数器的方式，当达到某个条件时在执行我们的回掉函数
+    //处理回调函数 异步编程
+    //去A方法里拿取姓名
+    //去B方法里拿去性别
+    //C方法是写入的方法
+
+
+
+</script>
+</body>
+</html>
