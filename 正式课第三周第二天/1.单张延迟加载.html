@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #div1{
+        width: 235px;
+        height: 386px;
+        border: 1px solid red;
+        background: #ddd;
+    }
+</style>
+<div id="div1">
+    <img src="" alt="" trueImage="./images/1.jpg" id="img1">
+</div>
+<script>
+    var img1 = document.getElementById("img1");
+    var timer = setTimeout(function () {
+        var oImg = new Image;
+        oImg.src = img1.getAttribute("trueImage");
+        oImg.onload = function () {
+            img1.src = this.src;
+            oImg = null;
+            clearTimeout(timer);
+        }
+        //img1.src = img1.getAttribute("trueImage");
+    },500);
+    /*
+        为什么要有延迟加载
+        降低请求
+    * */
+</script>
+</body>
+</html>

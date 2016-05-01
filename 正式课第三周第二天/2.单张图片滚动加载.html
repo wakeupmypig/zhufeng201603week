@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;padding: 0;
+    }
+    body{
+        height: 20000px;
+    }
+    #div1{
+        width: 235px;
+        height: 386px;
+        border: 1px solid red;
+        background: #ddd;
+        margin-top: 2000px;
+    }
+</style>
+<body>
+<div id="div1">
+    <img src="" trueImage = './images/1.jpg' id="img1">
+</div>
+<script src="DOM.js"></script>
+<script>
+    //分析：1.在刚开始的时候不加载图片，当图片完全露出屏幕时加载图片
+    //div.offsetTop+div.offsetHeight<win的scrollTop+wind的clientHeight 就加载图片
+    //先获取元素
+    var oDiv = document.getElementById("div1");
+    var oImg = document.getElementById("img1");
+    window.onscroll = function () {
+        //获取当前div的底部距离页面顶端的距离
+        var boxHeight = DOM.offset(oDiv).top + oDiv.offsetHeight;
+        //获取当前滚动后可见的底部距离顶端的距离
+        var winHeight = DOM.win("scrollTop")+DOM.win("clientHeight");
+        //当盒子完全进入滚动的区域
+        //每次页面滚动时候，会无限加载，因为boxHeight<=winHeight，如果加载了一次以后 就不再加载了
+        //先判断oImg是否加载过 没加载过就加载
+        if(!oImg.isLoaded){//限制只加载一次
+            if(boxHeight<=winHeight){
+                var image = new Image;
+                //拿到标签上的自定义属性
+                image.src =oImg.getAttribute("trueImage");
+                //看看图片能否加载
+                image.onload = function () {
+                    oImg.src = this.src;
+                    image =null;
+                };
+                oImg.isLoaded = true;//不管是否加载成功，他已经加载过了
+            }
+        }
+
+    }
+
+    
+</script>
+</body>
+</html>
