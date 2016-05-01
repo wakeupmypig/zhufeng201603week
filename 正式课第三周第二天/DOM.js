@@ -122,7 +122,47 @@ var DOM = (function () { //这个作用域不销毁
                 n = this.next(n);
             }
             return arr;
+        },
+        /*
+        * 获取相邻元素 上一个哥哥和下一个弟弟
+        * */
+        sibling: function (ele) {
+            var arr = [];
+            //没有的话会返回null
+            this.prev(ele)?arr.push(this.prev(ele)):false;
+            this.next(ele)?arr.push(this.next(ele)):false;
+            return arr;
+        },
+        /*
+        * 获取兄弟元素 所有的哥哥和所有的弟弟
+        * */
+        siblings: function (ele) {
+            //没有的话返回数组
+            return this.prevAll(ele).concat(this.nextAll(ele));
+        },
+        /*
+        * 获得当前元素的索引位置
+        * */
+        index: function (ele) {
+            return this.prevAll(ele).length;
+        },
+        /*
+        * firstChild 第一个儿子节点
+        * */
+        firstChild: function (container) {
+            if(flag){
+                return container.firstElementChild;
+            }
+            //拿到所有儿子节点 看看有没有儿子,如果有儿子取出儿子中的第一个
+            return this.children(container).length?this.children(container)[0]:null;
+        },
+        lastChild: function (container) {
+            if(flag){ //是否是高版本浏览器
+                return container.lastElementChild;
+            }
+            return this.children(container).length?this.children(container)[this.children(container).length-1]:null;
         }
+        
     }
 })();
 
