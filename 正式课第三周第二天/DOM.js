@@ -161,6 +161,40 @@ var DOM = (function () { //这个作用域不销毁
                 return container.lastElementChild;
             }
             return this.children(container).length?this.children(container)[this.children(container).length-1]:null;
+        },
+        //把某个元素追加到哪个元素里面的末尾
+        /**
+         *
+         * @param ele 要操作的元素
+         * @param container 要放到的盒子里
+         */
+        append: function (ele,container) {
+           return container.appendChild(ele);
+        },
+        //加到盒子内元素的前面
+        /**
+         *
+         * @param ele 我们要插进去的那个元素
+         * @param container 把元素放到哪个容器里
+         */
+        prepend: function (ele,container) {
+            //先找到第一个儿子，把他插进去;
+            var of = this.firstChild(container);//拿取第一个儿子
+            return container.insertBefore(ele,of);
+            //木有儿子会自动的把他append进去
+        },
+        /**
+         *
+         * @param newEle 新的元素插入到oldEle前面
+         * @param oldEle 旧的元素
+         */
+        insertBefore: function (newEle,oldEle) {
+            return oldEle.parentNode.insertBefore(newEle,oldEle);
+        },
+        /*把某个元素插到某个元素的后面*/
+        insertAfter: function (ele,oldEle) {
+            var oN = this.next(oldEle);
+            return oN.parentNode.insertBefore(ele,oN);
         }
         
     }
