@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style></style>
+<body>
+<ul id="ul">
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+    <div id="div4">div4</div>
+    <!--123-->
+    <li id="li1">li1</li>
+    <li id="li2">li2</li>
+    <li id="li3">li3</li>
+    <li id="li4">li4</li>
+</ul>
+<script src="DOM.js"></script>
+<script>
+    //alert(ul.children.length);
+    //除了ie8下其他都正常,ie8下会把注释节点也当作 标签处理
+    //判断是不是ie8
+    /** /**回车
+     * @param ele 要找谁的儿子标签（哪个元素的）
+     * @param tagName 我们要找特定的儿子
+     * @returns {Array} 是我们返回找到的儿子节点
+     */
+    function children(ele,tagName){
+        //判断是否是ie8 !=-1是ie8；
+        //要返回一个数组
+        var arr = [];
+        if(!(/MSIE (6|7|8)/.test(navigator.userAgent))){
+            arr = DOM.listToArray(ele.children);
+        }else{
+            //要先拿到ele下的所有儿子节点ele.childNodes
+            for(var i =0; i<ele.childNodes.length;i++){
+                //拿到当前的节点
+                var cur = ele.childNodes[i];
+                //如果nodeType是1的话 表示当前是标签元素
+                if(cur.nodeType==1){
+                    arr[arr.length] = cur;
+                }
+            }
+        }
+        if(typeof tagName=="string"){
+            //把arr在一次进行筛选出我们
+            var newArr = [];
+            for(var i =0; i<arr.length;i++){
+                var cur = arr[i];
+                //当前的标签名是否等于我们需要的那一个
+                if(cur.nodeName==tagName.toUpperCase()){
+                    newArr.push(cur);
+                }
+            }
+            arr = newArr;
+        }
+        return arr;
+    }
+    console.log(children(ul,"li"));
+
+</script>
+
+
+
+</body>
+</html>
