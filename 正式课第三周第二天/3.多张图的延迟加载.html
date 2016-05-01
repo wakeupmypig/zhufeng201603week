@@ -113,6 +113,12 @@
             }
         }
     }
+    //当页面一进行加载的时候，就先把当前可见屏幕里的内容加载一次;
+    setTimeout(function () {
+        allPage();
+    },500);
+    //当滚动的时候也要进行延迟加载
+    window.onscroll = allPage;
 </script>
 </body>
 </html>
