@@ -1,5 +1,6 @@
 var DOM = (function () { //这个作用域不销毁
     var flag = "getComputedStyle" in window;
+    //惰载函数
     return {
         listToArray: function (likeArray) {
             var arr = [];
@@ -59,7 +60,7 @@ var DOM = (function () { //这个作用域不销毁
         },
         children:function(ele,tagName){
             var arr = [];
-            if(!(/MSIE (6|7|8)/.test(navigator.userAgent))){
+            if(flag){
                 arr = this.listToArray(ele.children);
             }else{
                 for(var i =0; i<ele.childNodes.length;i++){
@@ -78,6 +79,47 @@ var DOM = (function () { //这个作用域不销毁
                     }
                 }
                 arr = newArr;
+            }
+            return arr;
+        },
+        /**
+         *
+         * @param ele 要获得的上一元素
+         * @returns {*}
+         */
+        prev: function (ele) {
+            if(flag){return ele.previousElementSibling;}
+            var p = ele.previousSibling;//先找一次
+            while (p&& p.nodeType!=1){
+                p = p.previousSibling;
+            }
+            return p;
+        },
+        next: function (ele) {
+            if(flag){
+                return ele.nextElementSibling;
+            }
+            var p = ele.nextSibling;
+            while (p&& p.nodeType!=1){
+                p= p.nextSibling;
+            }
+            return p;
+        },
+        prevAll: function (ele) {
+            var arr = [];
+            var p = this.prev(ele);//先往上找一个元素标签
+            while (p){
+                arr.unshift(p); //到倒过来放
+                p = this.prev(p);
+            }
+            return arr;
+        },
+        nextAll: function (ele) {
+            var arr = [];
+            var n = this.next(ele);
+            while (n){
+                arr.push(n);
+                n = this.next(n);
             }
             return arr;
         }
