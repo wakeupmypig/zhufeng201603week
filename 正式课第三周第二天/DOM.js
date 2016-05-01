@@ -217,6 +217,7 @@ var DOM = (function () { //这个作用域不销毁
         },
         getByClass:function getElementsByClassName(className,context){
             var context = context||document;
+            console.log(flag);
             if(flag){
                 return DOM.listToArray(context.getElementsByClassName(className));
             }
@@ -225,7 +226,7 @@ var DOM = (function () { //这个作用域不销毁
             var arr = [];
             for(var i=0;i<allTag.length;i++){
                 var cur = allTag[i];
-                var flag = true;
+                var f = true;
                 for(var j = 0; j<classList.length;j++){
                     var curClassName = classList[j];
                     var reg = new RegExp("(?:^| +)"+curClassName+"(?: +|$)");
@@ -234,7 +235,7 @@ var DOM = (function () { //这个作用域不销毁
                         break;
                     }
                 }
-                if(flag){
+                if(f){
                     arr.push(cur);
                 }
             }
