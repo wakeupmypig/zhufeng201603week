@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .tab li{list-style: none; display: inline-block;width: 80px;height: 30px;line-height: 30px;;text-align: center}
+    .divs{width: 500px;height: 200px;}
+    .divs div{width: 500px;height: 200px;float: left;display: none;border: 1px solid red}
+    li.select{ background: greenyellow;color: #dddddd}
+    .divs div.select{display: block}
+</style>
+<body>
+<div class="tab">
+    <ul class="lis">
+        <li class="select">卡1</li>
+        <li>卡2</li>
+        <li>卡3</li>
+    </ul>
+    <div class="divs">
+        <div class="select">卡1</div>
+        <div>卡2</div>
+        <div>卡3</div>
+    </div>
+</div>
+<div class="tab">
+    <ul class="lis">
+        <li class="select">卡1</li>
+        <li>卡2</li>
+        <li>卡3</li>
+    </ul>
+    <div class="divs">
+        <div class="select">卡1</div>
+        <div>卡2</div>
+        <div>卡3</div>
+    </div>
+</div>
+<div class="tab">
+    <ul class="lis">
+        <li class="select">卡1</li>
+        <li>卡2</li>
+        <li>卡3</li>
+    </ul>
+    <div class="divs">
+        <div class="select">卡1</div>
+        <div>卡2</div>
+        <div>卡3</div>
+    </div>
+</div>
+<script src="DOM.js"></script>
+<script>
+    //分析
+    //每一个tab的盒子代表一个选项卡
+    //每次点击的时候控制自己家的，就能实现互不干扰；
+    //先获得所有tab
+    function tab(){
+        //alert(this)//这里的this就是我们操作的
+        //把所有的都移除掉 ，给当前元素添加
+        //获得当前点击的那个索引值
+        var index = DOM.index(this);
+        //this.parentNode是ul
+        var oLis = DOM.children(this.parentNode);
+        // DOM.next(this.parentNode)是ul下面的div
+        var oDivs = DOM.children(DOM.next(this.parentNode));
+        for(var i =0;i<oLis.length;i++){
+            //把所有li带select的样式去掉
+            DOM.removeClass(oLis[i],"select");
+            DOM.removeClass(oDivs[i],"select");
+        }
+        //把当前的li加上select样式
+        DOM.addClass(this,"select");
+        DOM.addClass(oDivs[index],"select");
+    }
+    var oTabs = DOM.getByClass("tab");
+    for(var i = 0; i<oTabs.length;i++){//获得每一个选项卡
+        var cur = oTabs[i];
+        var oLis = cur.getElementsByTagName('li');
+        for(var j = 0;j<oLis.length;j++){//获得当前的tab下的li
+            oLis[j].onclick = function () {
+                tab.call(this);
+            }
+        }
+    }
+</script>
+</body>
+</html>

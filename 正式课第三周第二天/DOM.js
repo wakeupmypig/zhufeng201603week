@@ -210,7 +210,7 @@ var DOM = (function () { //这个作用域不销毁
             }
         },
         removeClass:function (ele,className){
-            if(hasClass(ele,className)){
+            if(this.hasClass(ele,className)){
                 ele.className=ele.className.replace(className,"");
             }
         },

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .tab li{list-style: none; display: inline-block;width: 80px;height: 30px;line-height: 30px;;text-align: center}
+    .divs{width: 500px;height: 200px;}
+    .divs div{width: 500px;height: 200px;float: left;display: none;border: 1px solid red}
+    li.select{ background: greenyellow;color: #dddddd}
+    .divs div.select{display: block}
+</style>
+<body>
+<div class="tab">
+    <ul class="lis">
+        <li class="select">卡1</li>
+        <li>卡2</li>
+        <li>卡3</li>
+    </ul>
+    <div class="divs">
+        <div class="select">卡1</div>
+        <div>卡2</div>
+        <div>卡3</div>
+    </div>
+</div>
+<div class="tab">
+    <ul class="lis">
+        <li class="select">卡1</li>
+        <li>卡2</li>
+        <li>卡3</li>
+    </ul>
+    <div class="divs">
+        <div class="select">卡1</div>
+        <div>卡2</div>
+        <div>卡3</div>
+    </div>
+</div>
+<div class="tab">
+    <ul class="lis">
+        <li class="select">卡1</li>
+        <li>卡2</li>
+        <li>卡3</li>
+    </ul>
+    <div class="divs">
+        <div class="select">卡1</div>
+        <div>卡2</div>
+        <div>卡3</div>
+    </div>
+</div>
+<script src="DOM.js"></script>
+<script>
+    function tab(){
+        var index = DOM.index(this);
+        var oLis = DOM.children(this.parentNode);
+        var oDivs = DOM.children(DOM.next(this.parentNode));
+        for(var i =0;i<oLis.length;i++){
+            DOM.removeClass(oLis[i],"select");
+            DOM.removeClass(oDivs[i],"select");
+        }
+        DOM.addClass(this,"select");
+        DOM.addClass(oDivs[index],"select");
+    }
+    var oTabs = DOM.getByClass("tab");
+    for(var i = 0; i<oTabs.length;i++){
+        var cur = oTabs[i];
+        var oLis = cur.getElementsByTagName('li');
+        for(var j = 0;j<oLis.length;j++){
+            oLis[j].onclick = function () {
+                tab.call(this);
+            }
+        }
+    }
+</script>
+</body>
+</html>
