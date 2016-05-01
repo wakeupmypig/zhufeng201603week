@@ -1,18 +1,19 @@
 var DOM = (function () { //这个作用域不销毁
     var flag = "getComputedStyle" in window;
     //惰载函数
-    return {
-        listToArray: function (likeArray) {
-            var arr = [];
-            try{
-                arr= Array.prototype.slice.call(likeArray);
-            }catch (e){
-                for(var i =0; i<likeArray.length;i++){
-                    arr.push(likeArray[i]);
-                }
+    function listToArray(likeArray) {
+        var arr = [];
+        try{
+            arr= Array.prototype.slice.call(likeArray);
+        }catch (e){
+            for(var i =0; i<likeArray.length;i++){
+                arr.push(likeArray[i]);
             }
-            return arr;
-        },
+        }
+        return arr;
+    }
+    return {
+        listToArray:listToArray,
         formatJSON: function (str) {
             return "JSON" in window?JSON.parse(str):eval('('+str+')');
         },
