@@ -56,6 +56,30 @@ var DOM = (function () { //这个作用域不销毁
                 top:top,
                 left:left
             }
+        },
+        children:function(ele,tagName){
+            var arr = [];
+            if(!(/MSIE (6|7|8)/.test(navigator.userAgent))){
+                arr = this.listToArray(ele.children);
+            }else{
+                for(var i =0; i<ele.childNodes.length;i++){
+                    var cur = ele.childNodes[i];
+                    if(cur.nodeType==1){
+                        arr[arr.length] = cur;
+                    }
+                }
+            }
+            if(typeof tagName=="string"){
+                var newArr = [];
+                for(var i =0; i<arr.length;i++){
+                    var cur = arr[i];
+                    if(cur.nodeName==tagName.toUpperCase()){
+                        newArr.push(cur);
+                    }
+                }
+                arr = newArr;
+            }
+            return arr;
         }
     }
 })();
