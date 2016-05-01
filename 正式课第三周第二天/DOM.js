@@ -213,9 +213,32 @@ var DOM = (function () { //这个作用域不销毁
             if(hasClass(ele,className)){
                 ele.className=ele.className.replace(className,"");
             }
+        },
+        getByClass:function getElementsByClassName(className,context){
+            var context = context||document;
+            if(flag){
+                return DOM.listToArray(context.getElementsByClassName(className));
+            }
+            var allTag = context.getElementsByTagName("*");
+            var classList = className.replace(/^ +| +$/g,"").split(/\s+/);
+            var arr = [];
+            for(var i=0;i<allTag.length;i++){
+                var cur = allTag[i];
+                var flag = true;
+                for(var j = 0; j<classList.length;j++){
+                    var curClassName = classList[j];
+                    var reg = new RegExp("(?:^| +)"+curClassName+"(?: +|$)");
+                    if(!reg.test(cur.className)){
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag){
+                    arr.push(cur);
+                }
+            }
+            return arr;
+
         }
     }
 })();
-
-
-

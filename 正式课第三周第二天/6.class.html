@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style></style>
+<body>
+<ul id="ul">
+    <li id="li1" class="  a b e   d">li1</li>
+    <li id="li2" class="b f  n m">li2</li>
+    <li id="li3" class="q u z">li3</li>
+    <li id="li4" class="a b c">li4</li>
+</ul>
+<script src="DOM.js"></script>
+<script>
+    //getElementsByClassName 可以通过空格的方式分割类名，判断如果类名都存在的话将其选出来
+   // console.log(document.getElementsByClassName(" a   b "));
+    //低版本浏览器不兼容byClassName
+    //getElementsByClassName可以更换上下文
+    /**
+     *
+     * @param className 要获得所带样式名的
+     * @param context  上下文，从哪里获取
+     */
+    function getElementsByClassName(className,context){
+        //如果没有传递就走document
+        var context = context||document;
+        //不是ie低版本下我们可以直接调用原生的
+        if(!(/MSIE (6|7|8)/.test(navigator.userAgent))){
+            return DOM.listToArray(context.getElementsByClassName(className));
+        }
+        //先拿到context下的所有标签 在一一匹配看是否能匹配到带有样式的 如果匹配了 放入数组里
+        var allTag = context.getElementsByTagName("*");
+        //遍历每一个标签
+        //去掉前后空格 /^ +| +$/g 全局匹配
+        //console.log( "("+className.replace(/^ +| +$/g,"")+")");
+        var classList = className.replace(/^ +| +$/g,"").split(/\s+/);
+        var arr = [];
+        for(var i=0;i<allTag.length;i++){
+            var cur = allTag[i];
+            //拿到一个标签和任意一个class名字匹配，如果有一个不一样，就不是我们想要的那一个
+            var flag = true;//刚开始设置为是当前元素上的样式
+            for(var j = 0; j<classList.length;j++){
+                var curClassName = classList[j];
+                var reg = new RegExp("(?:^| +)"+curClassName+"(?: +|$)");
+                if(!reg.test(cur.className)){
+                    flag = false;//设置为不是
+                    break;
+                }
+            }
+            if(flag){
+                arr.push(cur);
+            }
+        }
+        return arr;
+
+    }
+    getElementsByClassName(" a b ",ul)
+
+</script>
+</body>
+</html>
