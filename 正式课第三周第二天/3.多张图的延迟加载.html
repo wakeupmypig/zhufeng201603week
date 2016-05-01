@@ -61,6 +61,7 @@
             box.className = "box";
             var imgBox = document.createElement("div");
             imgBox.className = "imgBox";
+            imgBox.style.height=cur.height;//因为图片没出来imgBox没有高度所有我们要让盒子先拥有高度
             var img = document.createElement("img");
             img.trueImage  =cur.src; //给图片增加一个自定义属性，存储自己的真实路径
             var content = document.createElement("div");
@@ -71,14 +72,10 @@
             box.appendChild(imgBox);
             box.appendChild(content);
             df.appendChild(box);
-            main.appendChild(df);
         }
-
-
-
-
-
+        main.appendChild(df);
     }
+    bindData();
 </script>
 </body>
 </html>
