@@ -21,6 +21,9 @@
         width: 236px;
         margin-bottom: 20px
     }
+    img{
+        opacity: 0;
+    }
 
     /* #main{ -webkit-column-count: 4;!*一般做新闻用*!}*/
 </style>
@@ -92,8 +95,26 @@
         image.onload = function () {
             //我让真实的图片 去加载这个可以加载的图片
             ele.src = this.src;
+            fadeIn(ele);//当图片真实显示的时候让他淡入
             ele.isLoaded = true; //设置当前图片已经加载过了
         }
+    }
+    function fadeIn(ele){
+        var target = 1;//opacity从0变到1；
+        var allMs = 500;//需要的总时间
+        var interval = 10;//时间间隔
+        //每是10ms变化的步长
+        //每一步变化的量
+        var step = target/allMs*interval;
+        var timer = setInterval(function () {
+            var o = DOM.getCss(ele,'opacity');//每次先获得一下当前的透明度  数字类型
+            o+=step;//这次要赋给当前元素的透明度
+            if(o>=1){//如果大于1说明已经完全出现了
+                clearInterval(timer);//动画结束清除定时器
+                ele.style.opacity=1;
+            }
+            ele.style.opacity=o;
+        },interval);
     }
     function allPage(){
         //要先遍历每一张图片，看一下哪些图片要加载
@@ -108,7 +129,7 @@
             var boxH = DOM.offset(p).top + p.offsetHeight;
             //拿到当前可见的底部距离顶端的距离
             var winH = DOM.win("clientHeight")+DOM.win("scrollTop");
-            if(boxH<winH){
+            if(boxH<=winH){
                 onePage(cur);
             }
         }
