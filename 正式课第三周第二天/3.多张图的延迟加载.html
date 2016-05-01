@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    *{margin: 0;padding: 0}
+    .content{height: 35px;line-height: 35px}
+    .box{box-shadow: 1px 1px 2px 1px #333333;width: 236px; margin-bottom: 20px}
+  /* #main{ -webkit-column-count: 4;!*一般做新闻用*!}*/
+</style>
+<div id="main">
+    <div class="box">
+        <div class="imgBox">
+            <img src="./images/1.jpg">
+        </div>
+        <div class="content">
+            你好你好。
+        </div>
+    </div>
+</div>
+<script src="DOM.js"></script>
+<script>
+    //瀑布流 先放置好一排，找最矮的一列，把下一张图片放到最矮的那一列，
+    //重新在每一列里找，找到最矮的那一列，把这张放进去 Max.min.apply,定位
+    //要保证每张图片都一样宽度
+
+    //一.ajax获取数据
+    //1.创建xhr对象
+    var main = document.getElementById("main");
+    var val = '';
+    var xhr = new XMLHttpRequest();
+    //2.open
+    xhr.open('get','./json.txt',false);//false 同步 第三个参数是是否异步
+    //3.监听
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState==4&&/^2\d{2}$/.test(xhr.status)){
+            val = DOM.formatJSON(xhr.responseText);//已经变成数组了，不用再调用 listToArray；
+        }
+    };
+    //4.send
+    xhr.send();
+    //二.绑定数据
+    function bindData(){
+        //看看数据一共有多少个，我们就循环创建多少个盒子
+        /*<div class="box">
+            <div class="imgBox">
+                <img src="./images/1.jpg">
+            </div>
+            <div class="content">
+                你好你好。
+            </div>
+        </div>*/
+        var df = document.createDocumentFragment();
+        for(var i = 0;i<val.length;i++){
+            //创建最外层的盒子
+            var cur = val[i];//当前一条数据的内容
+            var box = document.createElement("div");
+            box.className = "box";
+            var imgBox = document.createElement("div");
+            imgBox.className = "imgBox";
+            var img = document.createElement("img");
+            img.trueImage  =cur.src; //给图片增加一个自定义属性，存储自己的真实路径
+            var content = document.createElement("div");
+            content.className = "content";
+            content.innerHTML ="data come on !!!";
+            //创建好一条数据的所有盒子
+            imgBox.appendChild(img);
+            box.appendChild(imgBox);
+            box.appendChild(content);
+            df.appendChild(box);
+            main.appendChild(df);
+        }
+
+
+
+
+
+    }
+</script>
+</body>
+</html>
