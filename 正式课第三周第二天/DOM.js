@@ -194,9 +194,26 @@ var DOM = (function () { //这个作用域不销毁
         /*把某个元素插到某个元素的后面*/
         insertAfter: function (ele,oldEle) {
             var oN = this.next(oldEle);
-            return oN.parentNode.insertBefore(ele,oN);
+            return oldEle.parentNode.insertBefore(ele,oN);
+        },
+        hasClass:  function (ele,name){
+            var reg = new RegExp("(?:^| +)"+name+"(?: +|$)");
+            return reg.test(ele.className);
+        },
+        addClass:function (ele,className){
+            var ary = className.split(/\s+/);
+            for(var i=0;i<ary.length;i++){
+                var cur =ary[i];
+                if(!this.hasClass(ele,cur)){
+                    ele.className+=' '+cur;
+                }
+            }
+        },
+        removeClass:function (ele,className){
+            if(hasClass(ele,className)){
+                ele.className=ele.className.replace(className,"");
+            }
         }
-        
     }
 })();
 

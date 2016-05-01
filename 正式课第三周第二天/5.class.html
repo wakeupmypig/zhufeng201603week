@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style></style>
+<body>
+<ul id="ul">
+    <li id="li1" class="  a b e   d">li1</li>
+    <li id="li2" class="b f  n m">li2</li>
+    <li id="li3" class="q u z">li3</li>
+    <li id="li4" class="a b c">li4</li>
+</ul>
+<script src="DOM.js"></script>
+<script>
+    /**
+     *
+     * @param ele 当前元素
+     * @param name 判断的样式名
+     * @returns {boolean}  判断是否存在
+     */
+    /*function hasClass(ele,name){
+        var classList = ele.className.split(/\s+/);
+        for(var i = 0; i<classList.length;i++){
+            if(classList[i]==name){
+                return true;
+            }
+        }
+        return false
+    }*/
+//    "a b e   d  "
+//    (^| +)       ( +|$)
+    /**
+     *
+     * @param ele 当前元素
+     * @param name 判断的样式名
+     * @returns {boolean}  判断是否存在
+     */
+    function hasClass(ele,name){
+        var reg = new RegExp("(?:^| +)"+name+"(?: +|$)");
+        return reg.test(ele.className);
+    }
+    /*增加样式*/
+    function addClass(ele,className){
+        //先判断有没有要添加的样式(没有样式才要增加)
+        var ary = className.split(/\s+/);//把多个的分开 [m,f]
+        console.log(ary);
+        for(var i=0;i<ary.length;i++){
+            var cur =ary[i];//把每一个要添加的样式都拿出来进行hasClass
+            if(!hasClass(ele,cur)){//f没有的话
+                //加的是拆分好的样式
+                ele.className+=' '+cur;//要增加一个空格否则连在一起了
+            }
+        }
+    }
+    /**
+     *
+     * @param ele 当前操作的元素
+     * @param className 移出的那个样式
+     */
+    function removeClass(ele,className){
+        if(hasClass(ele,className)){
+            ele.className=ele.className.replace(className,"");
+        }
+    }
+    console.log( hasClass(li1,"a"));
+    addClass(li1,"   m   f   ");//既加上m 又加上b
+    removeClass(li1,"f");
+</script>
+</body>
+</html>
