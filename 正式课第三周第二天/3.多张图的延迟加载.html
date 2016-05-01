@@ -6,20 +6,25 @@
 </head>
 <body>
 <style>
-    *{margin: 0;padding: 0}
-    .content{height: 35px;line-height: 35px}
-    .box{box-shadow: 1px 1px 2px 1px #333333;width: 236px; margin-bottom: 20px}
-  /* #main{ -webkit-column-count: 4;!*一般做新闻用*!}*/
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    .content {
+        height: 35px;
+        line-height: 35px
+    }
+
+    .box {
+        box-shadow: 1px 1px 2px 1px #333333;
+        width: 236px;
+        margin-bottom: 20px
+    }
+
+    /* #main{ -webkit-column-count: 4;!*一般做新闻用*!}*/
 </style>
 <div id="main">
-    <div class="box">
-        <div class="imgBox">
-            <img src="./images/1.jpg">
-        </div>
-        <div class="content">
-            你好你好。
-        </div>
-    </div>
 </div>
 <script src="DOM.js"></script>
 <script>
@@ -30,52 +35,84 @@
     //一.ajax获取数据
     //1.创建xhr对象
     var main = document.getElementById("main");
+    //拿到所有的图片
+    var imgs = document.getElementsByTagName("img");
     var val = '';
     var xhr = new XMLHttpRequest();
     //2.open
-    xhr.open('get','./json.txt',false);//false 同步 第三个参数是是否异步
+    xhr.open('get', './json.txt', false);//false 同步 第三个参数是是否异步
     //3.监听
     xhr.onreadystatechange = function () {
-        if(xhr.readyState==4&&/^2\d{2}$/.test(xhr.status)){
+        if (xhr.readyState == 4 && /^2\d{2}$/.test(xhr.status)) {
             val = DOM.formatJSON(xhr.responseText);//已经变成数组了，不用再调用 listToArray；
         }
     };
     //4.send
     xhr.send();
     //二.绑定数据
-    function bindData(){
+    function bindData() {
         //看看数据一共有多少个，我们就循环创建多少个盒子
         /*<div class="box">
-            <div class="imgBox">
+             <div class="imgBox">
                 <img src="./images/1.jpg">
-            </div>
-            <div class="content">
-                你好你好。
-            </div>
-        </div>*/
+             </div>
+             <div class="content">
+             你好你好。
+             </div>
+         </div>*/
         var df = document.createDocumentFragment();
-        for(var i = 0;i<val.length;i++){
+        for (var i = 0; i < val.length; i++) {
             //创建最外层的盒子
             var cur = val[i];//当前一条数据的内容
             var box = document.createElement("div");
             box.className = "box";
             var imgBox = document.createElement("div");
             imgBox.className = "imgBox";
-            imgBox.style.height=cur.height;//因为图片没出来imgBox没有高度所有我们要让盒子先拥有高度
+            imgBox.style.height = cur.height;//因为图片没出来imgBox没有高度所有我们要让盒子先拥有高度
             var img = document.createElement("img");
-            img.trueImage  =cur.src; //给图片增加一个自定义属性，存储自己的真实路径
+            img.trueImage = cur.src; //给图片增加一个自定义属性，存储自己的真实路径
             var content = document.createElement("div");
             content.className = "content";
-            content.innerHTML ="data come on !!!";
+            content.innerHTML = "data come on !!!";
             //创建好一条数据的所有盒子
             imgBox.appendChild(img);
             box.appendChild(imgBox);
             box.appendChild(content);
-            df.appendChild(box);
+            df.appendChild(box);//这是把一个盒子扔到垃圾箱里
         }
-        main.appendChild(df);
+        main.appendChild(df);//把垃圾箱扔到main里
     }
     bindData();
+    //先做一张图片延迟加载的方法;
+    function onePage(ele) {
+        //在js内部创建一个image
+        var image = new Image;
+        image.src = ele.trueImage;//获取自定义属性给我们的创建的img
+        //如果这个image可以加载
+        image.onload = function () {
+            //我让真实的图片 去加载这个可以加载的图片
+            ele.src = this.src;
+            ele.isLoaded = true; //设置当前图片已经加载过了
+        }
+    }
+    function allPage(){
+        //要先遍历每一张图片，看一下哪些图片要加载
+        for(var i =0;i<imgs.length;i++){
+            var cur = imgs[i];//拿出每一个图片
+            if(cur.isLoaded){continue;}
+            //判断如果这个图片进到浏览器里 就进行加载
+            //首先我们要拿到盒子的上偏移量+盒子的高度
+            //要找到每一个数据里最外面的盒子
+            var p = cur.parentNode.parentNode;
+            //算盒子的底部距离顶端的高度
+            var boxH = DOM.offset(p).top + p.offsetHeight;
+            //拿到当前可见的底部距离顶端的距离
+            var winH = DOM.win("clientHeight")+DOM.win("scrollTop");
+            if(boxH<winH){
+                onePage(cur);
+            }
+        }
+    }
 </script>
 </body>
 </html>
